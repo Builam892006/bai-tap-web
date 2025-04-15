@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Chính - Tin Kinh Tế</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #ffffff;
+            --text-color: #4a4a4a;
+            --card-background: #ffffff;
+            --card-border: #e0e0e0;
+            --navbar-background: #ffffff;
+            --navbar-shadow: rgba(10, 10, 10, 0.1);
+            --stockprice-background: #f5f5f5;
+            --stockprice-border: #e0e0e0;
+            --sidebar-border: #f0f0f0;
+            --footer-background: #fafafa;
+            --market-analysis-background: #f9f9f9;
+            --timestamp-color: #888;
+            --table-stripe: #f5f5f5;
+            --link-color: #3273dc;
+            --link-hover-color: #276cda;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #3273dc;
+            --primary-light: #eef3fc;
+            --border-light: #f0f0f0;
+            --box-shadow-color: rgba(10, 10, 10, 0.1);
+            --hover-background: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables */
+            --background-color: #121212;
+            --text-color: #e4e4e4;
+            --card-background: #1e1e1e;
+            --card-border: #333333;
+            --navbar-background: #1a1a1a;
+            --navbar-shadow: rgba(0, 0, 0, 0.3);
+            --stockprice-background: #1e1e1e;
+            --stockprice-border: #333333;
+            --sidebar-border: #333333;
+            --footer-background: #1a1a1a;
+            --market-analysis-background: #1e1e1e;
+            --timestamp-color: #aaaaaa;
+            --table-stripe: #252525;
+            --link-color: #4a9df8;
+            --link-hover-color: #6aadff;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #4a9df8;
+            --primary-light: #1c2938;
+            --border-light: #333333;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background: #252525;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 3px var(--box-shadow-color);
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card .title, .card .subtitle, .title, .subtitle {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .card .content {
+            color: var(--text-color);
+        }
+
+        .stockprice {
+            background-color: var(--stockprice-background);
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px solid var(--stockprice-border);
+            transition: background-color 0.3s ease;
+        }
+
+        .stockprice .column {
+            padding: 0.5rem;
+            text-align: center;
+            border-right: 1px solid var(--stockprice-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .stockprice .column:last-child {
+            border-right: none;
+        }
+
+        .navbar {
+            background-color: var(--navbar-background);
+            box-shadow: 0 2px 3px var(--navbar-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item, .navbar-link {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dropdown {
+            background-color: var(--navbar-background);
+            border-color: var(--border-light);
+        }
+
+        .navbar-divider {
+            background-color: var(--border-light);
+        }
+
+        .search-box {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .signin {
+            display: inline-block;
+        }
+
+        .featured-news {
+            margin-bottom: 2rem;
+        }
+
+        .news-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-background);
+            transition: background-color 0.3s ease;
+        }
+
+        .news-card .card-content {
+            flex-grow: 1;
+        }
+
+        .news-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        .sidebar-news {
+            border-left: 1px solid var(--sidebar-border);
+            height: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .sidebar-title {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .media-list .media {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sidebar-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .footer {
+            background-color: var(--footer-background);
+            padding: 3rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .market-analysis {
+            background-color: var(--market-analysis-background);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease;
+        }
+
+        .timestamp {
+            color: var(--timestamp-color);
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .table {
+            background-color: var(--card-background);
+            color: var(--text-color);
+        }
+
+        .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+            background-color: var(--table-stripe);
+        }
+
+        .table th {
+            color: var(--text-color);
+        }
+
+        a {
+            color: var(--link-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .has-text-success {
+            color: var(--success-color) !important;
+        }
+
+        .has-text-danger {
+            color: var(--danger-color) !important;
+        }
+
+        hr {
+            background-color: var(--border-light);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-background);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Smooth transitions for all elements */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+   <!-- Thanh điều hướng -->
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+     <div class="navbar-brand">
+       <a class="navbar-item" href="trang-chu-tin-tai-chinh.html">
+         <img id="site-logo" src="logolight.png" width="112" height="28" alt="Tin Kinh Tế Logo">
+       </a>
+   
+       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+       </a>
+     </div>
+   
+     <div id="Menu" class="navbar-menu">
+       <div class="navbar-start">
+         <a href="trang-chu-tin-tai-chinh.html" class="navbar-item">
+            Trang Chủ
+         </a>
+         <a href="xa-hoi.html" class="navbar-item">
+            Xã Hội
+         </a>
+         <a href="chung-khoan.html" class="navbar-item">
+            Chứng khoán
+         </a>
+         <a href="tai-chinh.html" class="navbar-item is-active">
+            Tài chính
+         </a>
+         <a href="bat-dong-san.html" class="navbar-item">
+            Bất động sản
+         </a>
+   
+         <div class="navbar-item has-dropdown is-hoverable">
+           <a class="navbar-link">
+             Khác
+           </a>   
+           <div class="navbar-dropdown">
+                <a href="#" class="navbar-item">
+                    Ngân hàng
+                </a>
+                <a href="#" class="navbar-item">
+                    Doanh nghiệp
+                </a>
+                <a href="#" class="navbar-item">
+                    Thị trường
+                </a>
+                <a href="#" class="navbar-item">
+                    Tiêu dùng
+                </a>
+                <a href="#" class="navbar-item">
+                    Kinh tế vĩ mô
+                </a>
+                <hr class="navbar-divider">
+                <a href="#" class="navbar-item">
+                    Ô tô
+                </a>
+                <a href="#" class="navbar-item">
+                    Phong cách sống
+                </a>
+                <a href="#" class="navbar-item">
+                    Công nghệ
+                </a>
+                <a href="#" class="navbar-item">
+                    Du lịch
+                </a>
+                <a href="#" class="navbar-item">
+                    Giáo dục
+                </a>
+           </div>
+         </div>
+       </div>
+   
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="theme-toggle" id="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
+             <i class="mdi mdi-weather-night" id="theme-icon"></i>
+           </div>
+           <div class="search-box">
+                <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
+           </div>
+           <div class="signin">
+                <a href="#" class="button is-primary">
+                    Đăng nhập
+                </a>
+                <a href="#" class="button is-outlined is-primary">
+                    Đăng ký
+                </a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </nav>
+
+   <!-- Nội dung chính -->
+   <div class="container">
+     <!-- Tin nổi bật -->
+     <section class="featured-news section">
+       <h2 class="title is-3 has-text-centered">Tin Tài Chính Nổi Bật</h2>
+       <div class="columns">
+         <div class="column is-8">
+           <div class="card">
+             <div class="card-image">
+               <span class="tag is-primary news-tag">Tin hot</span>
+               <figure class="image is-16by9">
+                 <img src="https://cafefcdn.com/203337114487263232/2025/4/15/screen-shot-2025-04-15-at-113958-1744700468291-17447004690221494168636.png" alt="Tin tài chính nổi bật">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-4">USD trượt giá, một đồng tiền khác 'trỗi dậy' trở thành 'hầm trú ẩn' mới cho giới đầu tư toàn cầu, tăng gần 4% chỉ trong 2 ngày</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 09:30</p>
+               <div class="content">
+                 <p>Đồng tiền chung của EU đã ghi nhận mức tăng mạnh nhất trong 3 năm vào cuối tuần trước, trong bối cảnh thị trường lo ngại về những bất ổn kinh tế do chính sách thuế quan mới của Mỹ, đặt ra câu hỏi về vai trò là hầm trú ẩn của đồng USD.</p>
+                 <a href="#" class="button is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://media.vneconomy.vn/w800/images/upload/2025/01/10/vay-17096978361501134324402.jpg" alt="Tin ngân hàng">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">23 ngân hàng đồng loạt hạ lãi suất huy động</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 14:45</p>
+               <div class="content">
+                 <p>Thống kê mới nhất từ Ngân hàng Nhà nước cho biết, từ ngày 25/2 đến 18/3, đã có 23 ngân hàng thương mại trong nước điều chỉnh giảm lãi suất với mức giảm từ 0,1-1%/năm tùy theo từng kỳ hạn...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <!-- Phân tích tài chính -->
+     <section class="market-analysis">
+       <h3 class="title is-4">Phân Tích Tài Chính</h3>
+       <div class="columns">
+         <div class="column is-6">
+           <h4 class="title is-5">Xu Hướng Lãi Suất</h4>
+           <p>Lãi suất tại Việt Nam đang trong xu hướng giảm nhẹ, phản ánh chính sách tiền tệ nới lỏng của Ngân hàng Nhà nước nhằm hỗ trợ tăng trưởng kinh tế. Lãi suất huy động kỳ hạn 12 tháng tại các ngân hàng thương mại hiện dao động ở mức 4,8-5,5%/năm, giảm khoảng 0,3-0,5 điểm phần trăm so với đầu năm.</p>
+           <p>Trong khi đó, lãi suất cho vay cũng đã giảm, với lãi suất cho vay ngắn hạn đối với các lĩnh vực ưu tiên ở mức 4,0-4,5%/năm, và lãi suất cho vay thông thường ở mức 6,5-9,0%/năm tùy theo đối tượng khách hàng và mục đích vay.</p>
+         </div>
+         <div class="column is-6">
+           <h4 class="title is-5">Tỷ Giá Ngoại Tệ</h4>
+           <div class="table-container">
+             <table class="table is-striped is-fullwidth">
+               <thead>
+                 <tr>
+                   <th>Ngoại tệ</th>
+                   <th>Mua vào</th>
+                   <th>Bán ra</th>
+                   <th>Biến động</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>USD</td>
+                   <td>24.850</td>
+                   <td>25.050</td>
+                   <td class="has-text-success">+0,2%</td>
+                 </tr>
+                 <tr>
+                   <td>EUR</td>
+                   <td>26.750</td>
+                   <td>27.150</td>
+                   <td class="has-text-danger">-0,3%</td>
+                 </tr>
+                 <tr>
+                   <td>JPY</td>
+                   <td>165,5</td>
+                   <td>167,8</td>
+                   <td class="has-text-success">+0,1%</td>
+                 </tr>
+                 <tr>
+                   <td>GBP</td>
+                   <td>31.250</td>
+                   <td>31.850</td>
+                   <td class="has-text-danger">-0,4%</td>
+                 </tr>
+                 <tr>
+                   <td>CNY</td>
+                   <td>3.450</td>
+                   <td>3.520</td>
+                   <td class="has-text-success">+0,2%</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <!-- Tin tức tài chính -->
+     <section class="section">
+       <h3 class="title is-4">Tin Tức Tài Chính Mới Nhất</h3>
+       <div class="columns is-multiline">
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://tttctt.1cdn.vn/2023/07/06/withhold-personal-income-tax.jpg" alt="Tin ngân sách">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Gần 230 tỷ đồng hoàn thuế thu nhập cá nhân tự động trong 1 tuần</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 10:15</p>
+               <div class="content">
+                 <p>Sau 7 ngày cơ quan thuế triển khai thực hiện hoàn thuế thu nhập cá nhân (TMCN) tự động, số lượng hồ sơ đề nghị hoàn thuế TNCN đã...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://cdn.thuonggiaonline.vn/images/339fb7ec9fcac97a81506ffaaf4ccef5061b9fd0e4d1039b96f80abb07154fa92c3bb6bd893ccd5d2288e72e63106b67/trai-phieu.jpg" alt="Tin trái phiếu">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">"Bom" nợ trái phiếu địa ốc lại chực nổ</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 14:30</p>
+               <div class="content">
+                 <p>“Bom” nợ trái phiếu lại rung chuông báo động khi nhiều đại gia bất động sản rơi vào vòng xoáy khất nợ, gia hạn vì mắc kẹt trong bài toán dòng tiền...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://cdn2.tuoitre.vn/471584752817336320/2025/4/13/photo-1744522932106-1744522932279967553939.jpg" alt="Tin bảo hiểm">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Hanwha Life Việt Nam đạt kết quả tích cực năm 2024, bám sát mục tiêu tăng trưởng bền vững</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 18/03/2025 - 09:45</p>
+               <div class="content">
+                 <p>Nhờ tối ưu hiệu quả hoạt động, quản trị chi phí, nâng cao chất lượng kinh doanh và chăm sóc khách hàng cũng như đẩy mạnh chuyển đổi số, Hanwha Life...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+   </div>
+
+   <!-- Footer -->
+   <footer class="footer">
+     <div class="container">
+       <div class="columns">
+         <div class="column is-3">
+           <h3 class="title is-5">Về Chúng Tôi</h3>
+           <p>Tin Kinh Tế - Trang tin tài chính hàng đầu Việt Nam, cung cấp thông tin kinh tế, tài chính, chứng khoán nhanh chóng và chính xác.</p>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Danh Mục</h3>
+           <ul>
+             <li><a href="trang-chu-tin-tai-chinh.html">Trang Chủ</a></li>
+             <li><a href="xa-hoi.html">Xã Hội</a></li>
+             <li><a href="chung-khoan.html">Chứng Khoán</a></li>
+             <li><a href="tai-chinh.html">Tài Chính</a></li>
+             <li><a href="bat-dong-san.html">Bất Động Sản</a></li>
+           </ul>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Liên Hệ</h3>
+           <p><i class="mdi mdi-map-marker"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+           <p><i class="mdi mdi-phone"></i> (028) 1234 5678</p>
+           <p><i class="mdi mdi-email"></i> info@tinkinhte.vn</p>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Theo Dõi</h3>
+           <div class="buttons">
+             <a href="#" class="button is-light"><i class="mdi mdi-facebook"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-twitter"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-youtube"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-linkedin"></i></a>
+           </div>
+         </div>
+       </div>
+       <hr>
+       <div class="content has-text-centered">
+         <p>© 2025 Tin Kinh Tế. Tất cả các quyền được bảo lưu.</p>
+       </div>
+     </div>
+   </footer>
+
+   <script src="theme-switcher.js"></script>
+   <script>
+     // Toggle mobile menu
+     document.addEventListener('DOMContentLoaded', () => {
+       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+       if ($navbarBurgers.length > 0) {
+         $navbarBurgers.forEach( el => {
+           el.addEventListener('click', () => {
+             const target = el.dataset.target;
+             const $target = document.getElementById(target);
+             el.classList.toggle('is-active');
+             $target.classList.toggle('is-active');
+           });
+         });
+       }
+     });
+   </script>
+</body>
+</html>

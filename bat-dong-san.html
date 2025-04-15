@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bất Động Sản - Tin Kinh Tế</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #ffffff;
+            --text-color: #4a4a4a;
+            --card-background: #ffffff;
+            --card-border: #e0e0e0;
+            --navbar-background: #ffffff;
+            --navbar-shadow: rgba(10, 10, 10, 0.1);
+            --stockprice-background: #f5f5f5;
+            --stockprice-border: #e0e0e0;
+            --sidebar-border: #f0f0f0;
+            --footer-background: #fafafa;
+            --market-analysis-background: #f9f9f9;
+            --timestamp-color: #888;
+            --table-stripe: #f5f5f5;
+            --link-color: #3273dc;
+            --link-hover-color: #276cda;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #3273dc;
+            --primary-light: #eef3fc;
+            --border-light: #f0f0f0;
+            --box-shadow-color: rgba(10, 10, 10, 0.1);
+            --hover-background: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables */
+            --background-color: #121212;
+            --text-color: #e4e4e4;
+            --card-background: #1e1e1e;
+            --card-border: #333333;
+            --navbar-background: #1a1a1a;
+            --navbar-shadow: rgba(0, 0, 0, 0.3);
+            --stockprice-background: #1e1e1e;
+            --stockprice-border: #333333;
+            --sidebar-border: #333333;
+            --footer-background: #1a1a1a;
+            --market-analysis-background: #1e1e1e;
+            --timestamp-color: #aaaaaa;
+            --table-stripe: #252525;
+            --link-color: #4a9df8;
+            --link-hover-color: #6aadff;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #4a9df8;
+            --primary-light: #1c2938;
+            --border-light: #333333;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background: #252525;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 3px var(--box-shadow-color);
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card .title, .card .subtitle, .title, .subtitle {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .card .content {
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--navbar-background);
+            box-shadow: 0 2px 3px var(--navbar-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item, .navbar-link {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dropdown {
+            background-color: var(--navbar-background);
+            border-color: var(--border-light);
+        }
+
+        .navbar-divider {
+            background-color: var(--border-light);
+        }
+
+        .search-box {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .signin {
+            display: inline-block;
+        }
+
+        .featured-news {
+            margin-bottom: 2rem;
+        }
+
+        .news-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-background);
+            transition: background-color 0.3s ease;
+        }
+
+        .news-card .card-content {
+            flex-grow: 1;
+        }
+
+        .news-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        .sidebar-news {
+            border-left: 1px solid var(--sidebar-border);
+            height: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .sidebar-title {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .media-list .media {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sidebar-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .footer {
+            background-color: var(--footer-background);
+            padding: 3rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .market-analysis {
+            background-color: var(--market-analysis-background);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease;
+        }
+
+        .timestamp {
+            color: var(--timestamp-color);
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .table {
+            background-color: var(--card-background);
+            color: var(--text-color);
+        }
+
+        .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+            background-color: var(--table-stripe);
+        }
+
+        .table th {
+            color: var(--text-color);
+        }
+
+        a {
+            color: var(--link-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .has-text-success {
+            color: var(--success-color) !important;
+        }
+
+        .has-text-danger {
+            color: var(--danger-color) !important;
+        }
+
+        hr {
+            background-color: var(--border-light);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-background);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Smooth transitions for all elements */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Property card styles */
+        .property-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .property-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .property-features {
+            display: flex;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-feature {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .property-feature i {
+            margin-right: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+   <!-- Thanh điều hướng -->
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+     <div class="navbar-brand">
+       <a class="navbar-item" href="trang-chu-tin-tai-chinh.html">
+         <img id="site-logo" src="logolight.png" width="112" height="28" alt="Tin Kinh Tế Logo">
+       </a>
+   
+       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+       </a>
+     </div>
+   
+     <div id="Menu" class="navbar-menu">
+       <div class="navbar-start">
+         <a href="trang-chu-tin-tai-chinh.html" class="navbar-item">
+            Trang Chủ
+         </a>
+         <a href="xa-hoi.html" class="navbar-item">
+            Xã Hội
+         </a>
+         <a href="chung-khoan.html" class="navbar-item">
+            Chứng khoán
+         </a>
+         <a href="tai-chinh.html" class="navbar-item">
+            Tài chính
+         </a>
+         <a href="bat-dong-san.html" class="navbar-item is-active">
+            Bất động sản
+         </a>
+   
+         <div class="navbar-item has-dropdown is-hoverable">
+           <a class="navbar-link">
+             Khác
+           </a>   
+           <div class="navbar-dropdown">
+                <a href="#" class="navbar-item">
+                    Ngân hàng
+                </a>
+                <a href="#" class="navbar-item">
+                    Doanh nghiệp
+                </a>
+                <a href="#" class="navbar-item">
+                    Thị trường
+                </a>
+                <a href="#" class="navbar-item">
+                    Tiêu dùng
+                </a>
+                <a href="#" class="navbar-item">
+                    Kinh tế vĩ mô
+                </a>
+                <hr class="navbar-divider">
+                <a href="#" class="navbar-item">
+                    Ô tô
+                </a>
+                <a href="#" class="navbar-item">
+                    Phong cách sống
+                </a>
+                <a href="#" class="navbar-item">
+                    Công nghệ
+                </a>
+                <a href="#" class="navbar-item">
+                    Du lịch
+                </a>
+                <a href="#" class="navbar-item">
+                    Giáo dục
+                </a>
+           </div>
+         </div>
+       </div>
+   
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="theme-toggle" id="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
+             <i class="mdi mdi-weather-night" id="theme-icon"></i>
+           </div>
+           <div class="search-box">
+                <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
+           </div>
+           <div class="signin">
+                <a href="#" class="button is-primary">
+                    Đăng nhập
+                </a>
+                <a href="#" class="button is-outlined is-primary">
+                    Đăng ký
+                </a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </nav>
+
+   <!-- Nội dung chính -->
+   <div class="container">
+     <!-- Tin nổi bật -->
+     <section class="featured-news section">
+       <h2 class="title is-3 has-text-centered">Tin Bất Động Sản Nổi Bật</h2>
+       <div class="columns">
+         <div class="column is-8">
+           <div class="card">
+             <div class="card-image">
+               <span class="tag is-primary news-tag">Tin hot</span>
+               <figure class="image is-16by9">
+                 <img src="https://cafefcdn.com/203337114487263232/2025/4/15/bcm1-1744706772709-17447067733851601033226.jpg" alt="Tin bất động sản nổi bật">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-4">TGĐ Becamex IDC nói gì về việc tạm hoãn thương vụ đấu giá cổ phần lớn nhất lịch sử TTCK?</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 10:30</p>
+               <div class="content">
+                 <p>Ông Phạm Ngọc Thuận – Tổng Giám đốc Tổng công ty Becamex IDC cho biết, do tác động bất lợi từ thị trường tài chính toàn cầu, kế hoạch đấu giá công khai trên Sở Giao dịch Chứng khoán TP.HCM (HOSE) đã tạm hoãn.</p>
+                 <a href="#" class="button is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://i1-kinhdoanh.vnecdn.net/2025/04/15/202504151025320242-z61-2532-17-4911-1252-1744688493.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=GM18GBbartqem1Wr0sYrUA" alt="Tin chính sách">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Đề xuất miễn tiếp thuế đất nông nghiệp tới 2030</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 15:45</p>
+               <div class="content">
+                 <p>Chính phủ cho rằng việc miễn tiếp thuế sử dụng đất nông nghiệp thêm 5 năm, giúp đảm bảo an ninh lương thực, tăng cạnh tranh của Việt Nam.</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <!-- Phân tích thị trường bất động sản -->
+     <section class="market-analysis">
+       <h3 class="title is-4">Phân Tích Thị Trường Bất Động Sản</h3>
+       <div class="columns">
+         <div class="column is-6">
+           <h4 class="title is-5">Xu Hướng Thị Trường</h4>
+           <p>Thị trường bất động sản Việt Nam đang trong giai đoạn phục hồi sau thời gian trầm lắng. Phân khúc nhà ở trung cấp và cao cấp tại các thành phố lớn như Hà Nội và TP.HCM đang có dấu hiệu tăng trưởng tích cực, với lượng giao dịch tăng và giá bán ổn định.</p>
+           <p>Các dự án khu đô thị mới tại các tỉnh vệ tinh như Bình Dương, Đồng Nai, Long An (phía Nam) và Bắc Ninh, Hưng Yên (phía Bắc) cũng đang thu hút sự quan tâm lớn của nhà đầu tư, nhờ hạ tầng giao thông được cải thiện và giá bán còn hấp dẫn so với các khu vực trung tâm.</p>
+         </div>
+         <div class="column is-6">
+           <h4 class="title is-5">Giá Bất Động Sản Theo Khu Vực</h4>
+           <div class="table-container">
+             <table class="table is-striped is-fullwidth">
+               <thead>
+                 <tr>
+                   <th>Khu vực</th>
+                   <th>Giá trung bình (triệu đồng/m²)</th>
+                   <th>Biến động</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>Quận 1, TP.HCM</td>
+                   <td>350 - 500</td>
+                   <td class="has-text-success">+8%</td>
+                 </tr>
+                 <tr>
+                   <td>Quận 2, TP.HCM</td>
+                   <td>180 - 250</td>
+                   <td class="has-text-success">+12%</td>
+                 </tr>
+                 <tr>
+                   <td>Quận Cầu Giấy, Hà Nội</td>
+                   <td>120 - 180</td>
+                   <td class="has-text-success">+5%</td>
+                 </tr>
+                 <tr>
+                   <td>Quận Nam Từ Liêm, Hà Nội</td>
+                   <td>90 - 130</td>
+                   <td class="has-text-success">+7%</td>
+                 </tr>
+                 <tr>
+                   <td>TP. Thủ Đức</td>
+                   <td>80 - 120</td>
+                   <td class="has-text-success">+15%</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <!-- Dự án nổi bật -->
+     <section class="section">
+       <h3 class="title is-4">Dự Án Bất Động Sản Nổi Bật</h3>
+       <div class="columns is-multiline">
+         <div class="column is-4">
+           <div class="card property-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                <img src="https://vinhomeoceanpark.com.vn/wp-content/uploads/2024/05/vinhomes-ocean-park-3-phoi-canh.jpg" alt="Dự án 1">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Khu đô thị Vinhomes Ocean Park 3</p>
+               <p class="subtitle is-6">Hưng Yên</p>
+               <p class="property-price">Từ 35 triệu/m²</p>
+               <div class="property-features">
+                 <div class="property-feature">
+                   <i class="mdi mdi-home"></i> 500 ha
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-calendar"></i> 2025-2028
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-office-building"></i> Vinhomes
+                 </div>
+               </div>
+               <div class="content">
+                 <p>Khu đô thị Vinhomes Ocean Park 3 là dự án quy mô lớn với đầy đủ tiện ích hiện đại, bao gồm trường học, bệnh viện, trung tâm thương mại...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Xem chi tiết</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card property-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://metropole-thuthiem.com/wp-content/uploads/2024/05/Can-ho-The-Metropole-Thu-Thiem-so-huu-vi-tri-Kim-Cuong-ben-bo-song-Sai-Gon-nhin-sang-trung-tam-Quan-1.jpg" alt="Dự án 2">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">The Metropole Thủ Thiêm</p>
+               <p class="subtitle is-6">TP. Thủ Đức, TP.HCM</p>
+               <p class="property-price">Từ 120 triệu/m²</p>
+               <div class="property-features">
+                 <div class="property-feature">
+                   <i class="mdi mdi-home"></i> 7.6 ha
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-calendar"></i> 2023-2025
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-office-building"></i> SonKim Land
+                 </div>
+               </div>
+               <div class="content">
+                 <p>The Metropole Thủ Thiêm là dự án cao cấp tại khu đô thị mới Thủ Thiêm, với thiết kế hiện đại và tiện ích đẳng cấp quốc tế...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Xem chi tiết</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card property-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://ecoparker.com/sites/default/files/bds/ecopark-grand-the-island_mat-bang-01.jpg" alt="Dự án 3">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Ecopark Grand - The Island</p>
+               <p class="subtitle is-6">Hưng Yên</p>
+               <p class="property-price">Từ 65 triệu/m²</p>
+               <div class="property-features">
+                 <div class="property-feature">
+                   <i class="mdi mdi-home"></i> 25 ha
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-calendar"></i> 2024-2026
+                 </div>
+                 <div class="property-feature">
+                   <i class="mdi mdi-office-building"></i> Ecopark
+                 </div>
+               </div>
+               <div class="content">
+                 <p>Ecopark Grand - The Island là dự án biệt thự đảo độc đáo với không gian sống xanh, hài hòa với thiên nhiên và đầy đủ tiện ích cao cấp...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Xem chi tiết</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <!-- Tin tức bất động sản -->
+     <section class="section">
+       <h3 class="title is-4">Tin Tức Bất Động Sản Mới Nhất</h3>
+       <div class="columns is-multiline">
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://cdn.petrotimes.vn/stores/news_dataimages/2025/042025/15/07/20250414094750-28dia-oc-hoang-quan-me-kong20250415074753.jpg?rt=20250415074753" alt="Tin pháp lý">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Vĩnh Long xử phạt một công ty vì bán nhà ở xã hội khi chưa đủ pháp lý</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 10:15</p>
+               <div class="content">
+                 <p>Đà Nẵng ưu tiên cung cấp khoáng sản cho dự án cao tốc Hòa Liên – Túy Loan; Khởi công Khu đô Phú Mỹ Hưng tại Bắc Ninh, tổng vốn hơn 27.000 tỷ...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://media.vneconomy.vn/w800/images/upload/2025/04/15/z6506941043601-25b6a8065dfa399ffe2d3d162480117c.jpg" alt="Tin hạ tầng">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Bộ Xây dựng ký kết 7 văn kiện quan trọng trong lĩnh vực đường sắt, đường bộ với Trung Quốc</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 14:30</p>
+               <div class="content">
+                 <p>Trong khuôn khổ chuyến thăm cấp Nhà nước của Tổng Bí thư, Chủ tịch nước Trung Quốc Tập Cận Bình tới Việt Nam, Bộ trưởng đã ký kết 7 văn kiện hợp tác...</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="column is-4">
+           <div class="card news-card">
+             <div class="card-image">
+               <figure class="image is-3by2">
+                 <img src="https://cafefcdn.com/203337114487263232/2025/4/15/img3507-vreq-103257-20502867-1744677862360-1744677862613147972624.jpeg" alt="Tin đầu tư">
+               </figure>
+             </div>
+             <div class="card-content">
+               <p class="title is-5">Hà Nội chi 880 tỷ đồng xây cầu vượt nút giao đường Lê Trọng Tấn với Quốc lộ 6</p>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 18/03/2025 - 09:45</p>
+               <div class="content">
+                 <p>
+                  Cầu vượt nút giao đường Lê Trọng Tấn, quận Hà Đông và Quốc lộ 6 có mức đầu tư dự kiến gần 880 tỷ đồng, thực hiện giai đoạn 2026-2028....</p>
+                 <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+   </div>
+
+   <!-- Footer -->
+   <footer class="footer">
+     <div class="container">
+       <div class="columns">
+         <div class="column is-3">
+           <h3 class="title is-5">Về Chúng Tôi</h3>
+           <p>Tin Kinh Tế - Trang tin tài chính hàng đầu Việt Nam, cung cấp thông tin kinh tế, tài chính, chứng khoán nhanh chóng và chính xác.</p>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Danh Mục</h3>
+           <ul>
+             <li><a href="trang-chu-tin-tai-chinh.html">Trang Chủ</a></li>
+             <li><a href="xa-hoi.html">Xã Hội</a></li>
+             <li><a href="chung-khoan.html">Chứng Khoán</a></li>
+             <li><a href="tai-chinh.html">Tài Chính</a></li>
+             <li><a href="bat-dong-san.html">Bất Động Sản</a></li>
+           </ul>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Liên Hệ</h3>
+           <p><i class="mdi mdi-map-marker"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+           <p><i class="mdi mdi-phone"></i> (028) 1234 5678</p>
+           <p><i class="mdi mdi-email"></i> info@tinkinhte.vn</p>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Theo Dõi</h3>
+           <div class="buttons">
+             <a href="#" class="button is-light"><i class="mdi mdi-facebook"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-twitter"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-youtube"></i></a>
+             <a href="#" class="button is-light"><i class="mdi mdi-linkedin"></i></a>
+           </div>
+         </div>
+       </div>
+       <hr>
+       <div class="content has-text-centered">
+         <p>© 2025 Tin Kinh Tế. Tất cả các quyền được bảo lưu.</p>
+       </div>
+     </div>
+   </footer>
+
+   <script>
+     // Toggle mobile menu
+     document.addEventListener('DOMContentLoaded', () => {
+       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+       if ($navbarBurgers.length > 0) {
+         $navbarBurgers.forEach( el => {
+           el.addEventListener('click', () => {
+             const target = el.dataset.target;
+             const $target = document.getElementById(target);
+             el.classList.toggle('is-active');
+             $target.classList.toggle('is-active');
+           });
+         });
+       }
+     });
+
+     // Xử lý chuyển đổi chế độ sáng/tối
+     const themeToggle = document.getElementById('theme-toggle');
+     const themeIcon = document.getElementById('theme-icon');
+     
+     // Hàm để thay đổi logo dựa trên theme
+     function updateLogo(theme) {
+       const siteLogo = document.getElementById('site-logo');
+       if (siteLogo) {
+         siteLogo.src = theme === 'dark' ? 'logodark.png' : 'logolight.png';
+       }
+     }
+     
+     // Hàm để áp dụng theme
+     function applyTheme(theme) {
+       document.documentElement.setAttribute('data-theme', theme);
+       if (theme === 'dark') {
+         themeIcon.classList.remove('mdi-weather-night');
+         themeIcon.classList.add('mdi-white-balance-sunny');
+       } else {
+         themeIcon.classList.remove('mdi-white-balance-sunny');
+         themeIcon.classList.add('mdi-weather-night');
+       }
+       updateLogo(theme);
+     }
+     
+     // Kiểm tra nếu người dùng đã chọn theme thủ công
+     const userTheme = localStorage.getItem('userTheme');
+     if (userTheme) {
+       applyTheme(userTheme);
+     } else {
+       // Nếu không có lựa chọn thủ công, sử dụng thiết lập của trình duyệt
+       const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+       if (prefersDarkScheme.matches) {
+         applyTheme('dark');
+       } else {
+         applyTheme('light');
+       }
+       
+       // Lắng nghe sự thay đổi trong thiết lập của trình duyệt
+       prefersDarkScheme.addEventListener('change', e => {
+         // Chỉ áp dụng nếu người dùng chưa chọn theme thủ công
+         if (!localStorage.getItem('userTheme')) {
+           applyTheme(e.matches ? 'dark' : 'light');
+         }
+       });
+     }
+     
+     // Xử lý sự kiện click vào nút chuyển đổi chế độ
+     themeToggle.addEventListener('click', () => {
+       const currentTheme = document.documentElement.getAttribute('data-theme');
+       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+       
+       applyTheme(newTheme);
+       // Lưu lựa chọn của người dùng
+       localStorage.setItem('userTheme', newTheme);
+     });
+     
+     // Thiết lập theme ban đầu trước khi trang tải xong
+     (function() {
+       const userTheme = localStorage.getItem('userTheme');
+       if (userTheme) {
+         document.documentElement.setAttribute('data-theme', userTheme);
+         // Cập nhật logo ngay khi trang tải
+         window.addEventListener('DOMContentLoaded', () => {
+           updateLogo(userTheme);
+         });
+       } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+         document.documentElement.setAttribute('data-theme', 'dark');
+         // Cập nhật logo ngay khi trang tải
+         window.addEventListener('DOMContentLoaded', () => {
+           updateLogo('dark');
+         });
+       } else {
+         // Cập nhật logo ngay khi trang tải
+         window.addEventListener('DOMContentLoaded', () => {
+           updateLogo('light');
+         });
+       }
+     })();
+   </script>
+</body>
+</html>

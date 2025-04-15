@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiêu đề bài viết - Tin Kinh Tế</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #ffffff;
+            --text-color: #4a4a4a;
+            --card-background: #ffffff;
+            --card-border: #e0e0e0;
+            --navbar-background: #ffffff;
+            --navbar-shadow: rgba(10, 10, 10, 0.1);
+            --stockprice-background: #f5f5f5;
+            --stockprice-border: #e0e0e0;
+            --sidebar-border: #f0f0f0;
+            --footer-background: #fafafa;
+            --market-analysis-background: #f9f9f9;
+            --timestamp-color: #888;
+            --table-stripe: #f5f5f5;
+            --link-color: #3273dc;
+            --link-hover-color: #276cda;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #3273dc;
+            --primary-light: #eef3fc;
+            --border-light: #f0f0f0;
+            --box-shadow-color: rgba(10, 10, 10, 0.1);
+            --hover-background: #f5f5f5;
+            --comment-background: #f9f9f9;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables */
+            --background-color: #121212;
+            --text-color: #e4e4e4;
+            --card-background: #1e1e1e;
+            --card-border: #333333;
+            --navbar-background: #1a1a1a;
+            --navbar-shadow: rgba(0, 0, 0, 0.3);
+            --stockprice-background: #1e1e1e;
+            --stockprice-border: #333333;
+            --sidebar-border: #333333;
+            --footer-background: #1a1a1a;
+            --market-analysis-background: #1e1e1e;
+            --timestamp-color: #aaaaaa;
+            --table-stripe: #252525;
+            --link-color: #4a9df8;
+            --link-hover-color: #6aadff;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #4a9df8;
+            --primary-light: #1c2938;
+            --border-light: #333333;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background: #252525;
+            --comment-background: #252525;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 3px var(--box-shadow-color);
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card .title, .card .subtitle, .title, .subtitle {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .card .content {
+            color: var(--text-color);
+        }
+
+        .stockprice {
+            background-color: var(--stockprice-background);
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px solid var(--stockprice-border);
+            transition: background-color 0.3s ease;
+        }
+
+        .stockprice .column {
+            padding: 0.5rem;
+            text-align: center;
+            border-right: 1px solid var(--stockprice-border);
+            transition: border-color 0.3s ease;
+        }
+        
+        .stockprice p {
+            margin-bottom: 0.2rem;
+        }
+
+        .stockprice .column:last-child {
+            border-right: none;
+        }
+
+        .navbar {
+            background-color: var(--navbar-background);
+            box-shadow: 0 2px 3px var(--navbar-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item, .navbar-link {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dropdown {
+            background-color: var(--navbar-background);
+            border-color: var(--border-light);
+        }
+
+        .navbar-divider {
+            background-color: var(--border-light);
+        }
+
+        .search-box {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .signin {
+            display: inline-block;
+        }
+
+        .featured-news {
+            margin-bottom: 2rem;
+        }
+
+        .news-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-background);
+            transition: background-color 0.3s ease;
+        }
+
+        .news-card .card-content {
+            flex-grow: 1;
+        }
+
+        .news-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        .sidebar-news {
+            border-left: 1px solid var(--sidebar-border);
+            height: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .sidebar-title {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .media-list .media {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sidebar-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .footer {
+            background-color: var(--footer-background);
+            padding: 3rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .market-analysis {
+            background-color: var(--market-analysis-background);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease;
+        }
+
+        .timestamp {
+            color: var(--timestamp-color);
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .table {
+            background-color: var(--card-background);
+            color: var(--text-color);
+        }
+
+        .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+            background-color: var(--table-stripe);
+        }
+
+        .table th {
+            color: var(--text-color);
+        }
+
+        .input, .textarea, .select select {
+            background-color: var(--card-background);
+            border-color: var(--border-light);
+            color: var(--text-color);
+        }
+
+        .input:focus, .textarea:focus, .select select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .button {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .button.is-primary {
+            background-color: var(--primary-color);
+        }
+
+        .button.is-primary.is-outlined {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .button.is-link {
+            background-color: var(--link-color);
+        }
+
+        .button.is-link.is-outlined {
+            background-color: transparent;
+            border-color: var(--link-color);
+            color: var(--link-color);
+        }
+
+        a {
+            color: var(--link-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .has-text-success {
+            color: var(--success-color) !important;
+        }
+
+        .has-text-danger {
+            color: var(--danger-color) !important;
+        }
+
+        hr {
+            background-color: var(--border-light);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-background);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Smooth transitions for all elements */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Article specific styles */
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content img {
+            margin: 1.5rem 0;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .article-content figure.image {
+            margin: 2rem 0;
+            width: 100%;
+            height: auto;
+        }
+        
+        .article-content figure.image.is-4by3 {
+            height: auto;
+            padding-top: 0;
+            position: relative;
+        }
+        
+        .article-content figure.image.is-4by3 img {
+            position: relative;
+            height: auto;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .article-meta .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta .author-name {
+            font-weight: bold;
+        }
+
+        .article-tags {
+            margin: 1.5rem 0;
+        }
+
+        .article-tags .tag {
+            margin-right: 5px;
+        }
+
+        .article-share {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .article-share span {
+            margin-right: 10px;
+        }
+
+        .article-share a {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Comments section */
+        .comments-section {
+            margin-top: 3rem;
+        }
+
+        .comment {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--comment-background);
+            border-radius: 4px;
+            border: 1px solid var(--border-light);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+        }
+
+        .comment-date {
+            color: var(--timestamp-color);
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .comment-content {
+            margin-bottom: 1rem;
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-actions a {
+            margin-right: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-actions a i {
+            margin-right: 5px;
+        }
+
+        .comment-form {
+            margin-top: 2rem;
+        }
+
+        /* Related news */
+        .related-news {
+            margin-top: 3rem;
+        }
+
+        .related-news-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-news-card .card-content {
+            flex-grow: 1;
+            padding: 1rem;
+        }
+
+        .related-news-card .title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-news-card .timestamp {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+   <!-- Thanh điều hướng -->
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+     <div class="navbar-brand">
+       <a class="navbar-item" href="../trang-chu-tin-tai-chinh.html">
+         <img id="site-logo" src="../logolight.png" width="112" height="28" alt="Tin Kinh Tế Logo">
+       </a>
+   
+       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="Menu">
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+       </a>
+     </div>
+   
+     <div id="Menu" class="navbar-menu">
+       <div class="navbar-start">
+         <a href="../trang-chu-tin-tai-chinh.html" class="navbar-item">
+            Trang Chủ
+         </a>
+         <a href="../xa-hoi.html" class="navbar-item">
+            Xã Hội
+         </a>
+         <a href="../chung-khoan.html" class="navbar-item">
+            Chứng khoán
+         </a>
+         <a href="../tai-chinh.html" class="navbar-item">
+            Tài chính
+         </a>
+         <a href="../bat-dong-san.html" class="navbar-item">
+            Bất động sản
+         </a>
+   
+         <div class="navbar-item has-dropdown is-hoverable">
+           <a class="navbar-link">
+             Khác
+           </a>   
+           <div class="navbar-dropdown">
+                <a href="#" class="navbar-item">
+                    Ngân hàng
+                </a>
+                <a href="#" class="navbar-item">
+                    Doanh nghiệp
+                </a>
+                <a href="#" class="navbar-item">
+                    Thị trường
+                </a>
+                <a href="#" class="navbar-item">
+                    Tiêu dùng
+                </a>
+                <a href="#" class="navbar-item">
+                    Kinh tế vĩ mô
+                </a>
+                <hr class="navbar-divider">
+                <a href="#" class="navbar-item">
+                    Ô tô
+                </a>
+                <a href="#" class="navbar-item">
+                    Phong cách sống
+                </a>
+                <a href="#" class="navbar-item">
+                    Công nghệ
+                </a>
+                <a href="#" class="navbar-item">
+                    Du lịch
+                </a>
+                <a href="#" class="navbar-item">
+                    Giáo dục
+                </a>
+           </div>
+         </div>
+       </div>
+   
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="theme-toggle" id="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
+             <i class="mdi mdi-weather-night" id="theme-icon"></i>
+           </div>
+           <div class="search-box">
+                <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
+           </div>
+           <div class="signin">
+                <a href="#" class="button is-primary">
+                    Đăng nhập
+                </a>
+                <a href="#" class="button is-outlined is-primary">
+                    Đăng ký
+                </a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </nav>
+
+   <!-- Bảng giá chứng khoán -->
+   <div class="stockprice columns is-mobile">
+    <div class="column">
+        <strong>S&P 500</strong>
+        <p>5,667.56</p>
+        <p class="has-text-success"><i class="mdi mdi-triangle"></i>4.67 (0.08%)</p>
+    </div>
+    <div class="column">
+        <strong>Nasdaq</strong>
+        <p>17,840.45</p>
+        <p class="has-text-success"><i class="mdi mdi-triangle"></i>92.42 (0.52%)</p>
+    </div>
+    <div class="column">
+        <strong>Dow 30</strong>
+        <p>41,985.35</p>
+        <p class="has-text-success"><i class="mdi mdi-triangle"></i>32.03 (0.08%)</p>
+    </div>
+    <div class="column">
+        <strong>FTSE 100</strong>
+        <p>8,646.79</p>
+        <p class="has-text-danger"><i class="mdi mdi-triangle-down"></i>55.20 (0.63%)</p>
+    </div>
+    <div class="column">
+        <strong>Nikkei 225</strong>
+        <p>37,677.06</p>
+        <p class="has-text-danger"><i class="mdi mdi-triangle-down"></i>74.82 (0.20%)</p>
+    </div>
+    <div class="column">
+        <strong>VN-Index</strong>
+        <p>1,285.75</p>
+        <p class="has-text-success"><i class="mdi mdi-triangle"></i>5.23 (0.41%)</p>
+    </div>
+    <div class="column">
+        <strong>HNX-Index</strong>
+        <p>238.72</p>
+        <p class="has-text-success"><i class="mdi mdi-triangle"></i>1.23 (0.52%)</p>
+    </div>
+    <div class="column">
+        <strong>UPCOM-Index</strong>
+        <p>93.20</p>
+        <p class="has-text-danger"><i class="mdi mdi-triangle-down"></i>0.30 (0.32%)</p>
+    </div>
+   </div>
+
+   <!-- Nội dung chính -->
+   <div class="container">
+     <div class="columns">
+       <div class="column is-8">
+         <!-- Bài viết chính -->
+         <section class="section">
+           <!-- Thẻ phân loại và tiêu đề -->
+           <div class="tags">
+             <span class="tag is-primary">Tài chính</span>
+             <span class="tag is-info">Chứng khoán</span>
+           </div>
+           <h1 class="title is-2">Tiêu đề bài viết tin tức ở đây</h1>
+           
+           <!-- Thông tin tác giả và thời gian -->
+           <div class="article-meta">
+             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tác giả" class="author-avatar">
+             <div class="author-info">
+               <span class="author-name">Tên tác giả</span>
+               <span class="timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 08:30</span>
+             </div>
+           </div>
+           
+           <!-- Ảnh chính của bài viết -->
+           <figure class="image is-16by9">
+             <img src="https://media.vneconomy.vn/w800/images/upload/2025/03/22/anh-man-hinh-2025-03-22-luc-07-44-28.png" alt="Ảnh bài viết">
+             <figcaption class="has-text-centered is-italic">Chú thích ảnh bài viết</figcaption>
+           </figure>
+           
+           <!-- Nội dung bài viết -->
+           <div class="content article-content">
+             <p>
+               <strong>Tóm tắt:</strong> Đây là phần tóm tắt ngắn gọn nội dung chính của bài viết, giúp người đọc nắm được thông tin quan trọng trước khi đọc chi tiết.
+             </p>
+             
+             <p>
+               Đoạn văn đầu tiên của bài viết. Thị trường chứng khoán Mỹ tăng điểm nhẹ trong phiên ngày thứ Sáu (21/3), hoàn tất một tuần tăng và chấm dứt chuỗi 4 tuần giảm liên tiếp dưới áp lực từ thuế quan, mối lo suy thoái và sự dịch chuyển của dòng tiền khỏi các cổ phiếu công nghệ vốn hóa lớn.
+             </p>
+             
+             <p>
+               Đoạn văn thứ hai của bài viết. Giá dầu thô cũng tăng trong tuần này, khi các biện pháp trừng phạt mới của Mỹ liên quan tới Iran đặt ra rủi ro thắt chặt nguồn cung dầu. Các nhà đầu tư đang theo dõi sát sao diễn biến của thị trường và các chính sách mới từ Cục Dự trữ Liên bang Mỹ (Fed).
+             </p>
+             
+             <h3 class="title is-4">Tiêu đề phụ 1</h3>
+             
+             <p>
+               Nội dung cho tiêu đề phụ 1. Các chuyên gia phân tích cho rằng thị trường đang trong giai đoạn điều chỉnh sau một thời gian tăng trưởng mạnh. Nhiều cổ phiếu công nghệ lớn đã giảm giá trong những tuần gần đây, tạo cơ hội cho các nhà đầu tư dài hạn.
+             </p>
+             
+             <blockquote>
+               "Đây là một trích dẫn từ chuyên gia hoặc nguồn tin đáng tin cậy về chủ đề bài viết. Trích dẫn này giúp làm rõ hoặc nhấn mạnh một điểm quan trọng trong bài viết." - Tên chuyên gia, Chức vụ
+             </blockquote>
+             
+             <h3 class="title is-4">Tiêu đề phụ 2</h3>
+             
+             <p>
+               Nội dung cho tiêu đề phụ 2. Tại thị trường Việt Nam, VN-Index cũng có tuần giao dịch tích cực với 3 phiên tăng điểm liên tiếp. Khối ngoại tiếp tục mua ròng, tạo động lực cho thị trường.
+             </p>
+             
+             <figure class="image is-4by3">
+               <img src="https://media.baovanhoa.vn/zoom/1000/uploaded/ngoctrung/2025_02_07/ck6_afns.png" alt="Biểu đồ thị trường">
+               <figcaption class="has-text-centered is-italic">Biểu đồ diễn biến thị trường trong tuần qua</figcaption>
+             </figure>
+             
+             <p>
+               Đoạn văn tiếp theo của bài viết. Các nhóm ngành dẫn dắt thị trường trong tuần qua bao gồm ngân hàng, chứng khoán và bất động sản. Đặc biệt, nhóm cổ phiếu ngân hàng ghi nhận mức tăng ấn tượng nhờ kết quả kinh doanh quý I khả quan.
+             </p>
+             
+             <h3 class="title is-4">Kết luận</h3>
+             
+             <p>
+               Đoạn kết luận của bài viết. Nhìn chung, thị trường đang có những tín hiệu tích cực và dự báo sẽ tiếp tục xu hướng tăng trong ngắn hạn. Tuy nhiên, các nhà đầu tư cần thận trọng trước những biến động từ thị trường quốc tế và theo dõi sát sao các chính sách kinh tế vĩ mô.
+             </p>
+           </div>
+           
+           <!-- Tags và chia sẻ -->
+           <div class="article-tags">
+             <span class="tag">Chứng khoán Mỹ</span>
+             <span class="tag">VN-Index</span>
+             <span class="tag">Thị trường tài chính</span>
+             <span class="tag">Giá dầu</span>
+           </div>
+           
+           <div class="article-share">
+             <span><strong>Chia sẻ:</strong></span>
+             <a href="#" title="Chia sẻ lên Facebook"><i class="mdi mdi-facebook"></i></a>
+             <a href="#" title="Chia sẻ lên Twitter"><i class="mdi mdi-twitter"></i></a>
+             <a href="#" title="Chia sẻ lên LinkedIn"><i class="mdi mdi-linkedin"></i></a>
+             <a href="#" title="Chia sẻ qua Email"><i class="mdi mdi-email-outline"></i></a>
+           </div>
+           
+           <hr>
+           
+           <!-- Phần bình luận -->
+           <div class="comments-section">
+             <h3 class="title is-4">Bình luận (3)</h3>
+             
+             <!-- Bình luận 1 -->
+             <div class="comment">
+               <div class="comment-header">
+                 <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Avatar" class="comment-avatar">
+                 <span class="comment-author">Nguyễn Văn A</span>
+                 <span class="comment-date">22/03/2025 - 10:15</span>
+               </div>
+               <div class="comment-content">
+                 <p>Bài viết rất hay và cung cấp thông tin hữu ích. Tôi đang theo dõi thị trường chứng khoán và thấy rằng phân tích của tác giả khá sát với thực tế.</p>
+               </div>
+               <div class="comment-actions">
+                 <a href="#"><i class="mdi mdi-thumb-up-outline"></i> Thích (5)</a>
+                 <a href="#"><i class="mdi mdi-reply"></i> Trả lời</a>
+               </div>
+             </div>
+             
+             <!-- Bình luận 2 -->
+             <div class="comment">
+               <div class="comment-header">
+                 <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Avatar" class="comment-avatar">
+                 <span class="comment-author">Trần Thị B</span>
+                 <span class="comment-date">22/03/2025 - 11:30</span>
+               </div>
+               <div class="comment-content">
+                 <p>Tôi không đồng ý với nhận định về xu hướng thị trường trong ngắn hạn. Theo tôi, còn nhiều yếu tố rủi ro từ kinh tế toàn cầu có thể ảnh hưởng đến thị trường Việt Nam.</p>
+               </div>
+               <div class="comment-actions">
+                 <a href="#"><i class="mdi mdi-thumb-up-outline"></i> Thích (2)</a>
+                 <a href="#"><i class="mdi mdi-reply"></i> Trả lời</a>
+               </div>
+             </div>
+             
+             <!-- Bình luận 3 -->
+             <div class="comment">
+               <div class="comment-header">
+                 <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Avatar" class="comment-avatar">
+                 <span class="comment-author">Lê Văn C</span>
+                 <span class="comment-date">22/03/2025 - 14:45</span>
+               </div>
+               <div class="comment-content">
+                 <p>Bạn có thể chia sẻ thêm về các cổ phiếu ngân hàng nào đang có triển vọng tốt không? Tôi đang quan tâm đến nhóm này.</p>
+               </div>
+               <div class="comment-actions">
+                 <a href="#"><i class="mdi mdi-thumb-up-outline"></i> Thích (1)</a>
+                 <a href="#"><i class="mdi mdi-reply"></i> Trả lời</a>
+               </div>
+             </div>
+             
+             <!-- Form bình luận -->
+             <div class="comment-form">
+               <h4 class="title is-5">Để lại bình luận</h4>
+               <div class="field">
+                 <div class="control">
+                   <textarea class="textarea" placeholder="Nhập bình luận của bạn"></textarea>
+                 </div>
+               </div>
+               <div class="field is-grouped">
+                 <div class="control">
+                   <button class="button is-primary">Gửi bình luận</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+       </div>
+    
+       <div class="column is-4">
+        <!-- Sidebar -->
+        <section class="section sidebar-news">
+          <!-- Tin liên quan -->
+          <div class="related-news">
+            <h3 class="title is-4 sidebar-title">Tin liên quan</h3>
+            
+            <!-- Tin liên quan 1 -->
+            <div class="card related-news-card mb-4">
+              <div class="card-image">
+                <figure class="image is-3by2">
+                  <img src="https://cdnmedia.baotintuc.vn/Upload/DmtgOUlHWBO5POIHzIwr1A/files/2025/02/06/chung-khoan-06022025-01.jpg" alt="Tin liên quan 1">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title">Fed giữ nguyên lãi suất, thị trường chứng khoán Mỹ phản ứng tích cực</p>
+                <p class="timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 09:15</p>
+                <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+              </div>
+            </div>
+            
+            <!-- Tin liên quan 2 -->
+            <div class="card related-news-card mb-4">
+              <div class="card-image">
+                <figure class="image is-3by2">
+                 <img src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2025/04/1504/dau-150425.jpg" alt="Tin liên quan 1">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title">Giá dầu tăng mạnh sau thông tin về trừng phạt mới với Iran</p>
+                <p class="timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 14:30</p>
+                <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+              </div>
+            </div>
+            
+            <!-- Tin liên quan 3 -->
+            <div class="card related-news-card mb-4">
+              <div class="card-image">
+                <figure class="image is-3by2">
+                  <img src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2025/04/1504/dau-150425.jpg" alt="Tin liên quan 3">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title">Cổ phiếu ngân hàng dẫn dắt thị trường, VN-Index vượt mốc 1.280 điểm</p>
+                <p class="timestamp"><i class="mdi mdi-clock-outline"></i> 18/03/2025 - 16:45</p>
+                <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tin nổi bật -->
+          <div class="featured-sidebar">
+            <h3 class="title is-4 sidebar-title">Tin nổi bật</h3>
+            
+            <div class="media-list">
+              <!-- Tin nổi bật 1 -->
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://i1-vnexpress.vnecdn.net/2025/01/15/DJI-0403-2-3460-1736915828.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=F0vPHVYDX9D0Ui9qylLYng" alt="Tin nổi bật 1">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>Thị trường bất động sản phía Nam sôi động trở lại</strong>
+                      <br>
+                      <small class="timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025</small>
+                    </p>
+                  </div>
+                </div>
+              </article>
+              
+              <!-- Tin nổi bật 2 -->
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://media.vov.vn/sites/default/files/styles/large_watermark/public/2024-11/z6008169026618_4083626b52be4397965f7d174a8bd5cb.jpg" alt="Tin nổi bật 2">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>Các công ty công nghệ Việt Nam thu hút vốn đầu tư mạnh mẽ</strong>
+                      <br>
+                      <small class="timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025</small>
+                    </p>
+                  </div>
+                </div>
+              </article>
+              
+              <!-- Tin nổi bật 3 -->
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://media.vneconomy.vn/w800/images/upload/2025/03/20/tieu-dung.jpg" alt="Tin nổi bật 3">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>Tiêu dùng nội địa tăng trưởng mạnh trong quý I/2025</strong>
+                      <br>
+                      <small class="timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025</small>
+                    </p>
+                  </div>
+                </div>
+              </article>
+              
+              <!-- Tin nổi bật 4 -->
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://photo-baomoi.bmcdn.me/w700_r1/2025_04_02_20_51867456/369c46293667df398676.jpg.avif" alt="Tin nổi bật 4">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>Xuất khẩu nông sản đạt kỷ lục mới trong 3 tháng đầu năm</strong>
+                      <br>
+                      <small class="timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025</small>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>  
+
+    <!-- Footer -->
+   <footer class="footer">
+     <div class="container">
+       <div class="columns">
+         <div class="column is-3">
+           <h3 class="title is-5">Về chúng tôi</h3>
+           <p>Tin Kinh Tế là trang tin tài chính hàng đầu, cung cấp thông tin nhanh chóng, chính xác về thị trường tài chính, chứng khoán, bất động sản và kinh tế vĩ mô.</p>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Chuyên mục</h3>
+           <ul>
+             <li><a href="#">Tài chính - Ngân hàng</a></li>
+             <li><a href="#">Chứng khoán</a></li>
+             <li><a href="#">Bất động sản</a></li>
+             <li><a href="#">Doanh nghiệp</a></li>
+             <li><a href="#">Kinh tế vĩ mô</a></li>
+           </ul>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Liên kết</h3>
+           <ul>
+             <li><a href="#">Điều khoản sử dụng</a></li>
+             <li><a href="#">Chính sách bảo mật</a></li>
+             <li><a href="#">Quảng cáo</a></li>
+             <li><a href="#">Tuyển dụng</a></li>
+             <li><a href="#">Liên hệ</a></li>
+           </ul>
+         </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Kết nối với chúng tôi</h3>
+           <div class="social-icons">
+             <a href="#"><i class="mdi mdi-facebook"></i></a>
+             <a href="#"><i class="mdi mdi-twitter"></i></a>
+             <a href="#"><i class="mdi mdi-linkedin"></i></a>
+             <a href="#"><i class="mdi mdi-youtube"></i></a>
+             <a href="#"><i class="mdi mdi-instagram"></i></a>
+           </div>
+           <div class="newsletter mt-4">
+             <h4 class="title is-6">Đăng ký nhận tin</h4>
+             <div class="field has-addons">
+               <div class="control is-expanded">
+                 <input class="input" type="email" placeholder="Email của bạn">
+               </div>
+               <div class="control">
+                 <a class="button is-primary">Đăng ký</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <hr>
+       <div class="content has-text-centered">
+         <p>© 2025 Tin Kinh Tế. Tất cả các quyền được bảo lưu.</p>
+       </div>
+     </div>
+   </footer>
+
+   <!-- JavaScript -->
+   <script src="../theme-switcher.js"></script>
+   <script>
+     // Toggle mobile menu
+     document.addEventListener('DOMContentLoaded', () => {
+       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+       if ($navbarBurgers.length > 0) {
+         $navbarBurgers.forEach( el => {
+           el.addEventListener('click', () => {
+             const target = el.dataset.target || 'Menu';
+             const $target = document.getElementById(target);
+             if ($target) {
+               el.classList.toggle('is-active');
+               $target.classList.toggle('is-active');
+             }
+           });
+         });
+       }
+     });
+   </script>
+</body>
+</html>
