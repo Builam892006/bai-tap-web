@@ -3,13 +3,12 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        
+    "configurations": [    
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open trang-chu-tin-tai-chinh.html",
-            "file": "f:\\CODE\\bulma-1.0.2\\trang-chu-tin-tai-chinh.html"
+            "name": "Preview trang-chu-tin-tai-chinh.html",
+            "url": "http://localhost:3000/trang-chu-tin-tai-chinh.html"
         }
     ]
 }
