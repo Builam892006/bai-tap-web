@@ -1,4 +1,4 @@
 {
     "zencoder.enableRepoIndexing": true,
-    "livePreview.defaultPreviewPath": "./trang-chu-tin-tai-chinh.html"
+    "livePreview.defaultPreviewPath": "/trang-chu-tin-tai-chinh.html"
 }
