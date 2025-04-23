@@ -6,6 +6,7 @@
     <title>Bất Động Sản - Tin Kinh Tế</title>
     <link rel="stylesheet" href="./bulma/css/bulma.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./theme-transitions.css">
     <style>
         :root {
             /* Light mode variables */
@@ -229,10 +230,7 @@
             font-size: 1.2rem;
         }
 
-        /* Smooth transitions for all elements */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+        /* Transitions are now handled by theme-transitions.css */
 
         /* Property card styles */
         .property-card {
@@ -344,10 +342,10 @@
                 <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
            </div>
            <div class="signin">
-                <a href="#" class="button" style="background-color: #3273dc; color: white; border-color: #3273dc;">
+                <a href="dang-nhap.html" class="button" style="background-color: #3273dc; color: white; border-color: #3273dc;">
                     Đăng nhập
                 </a>
-                <a href="#" class="button is-outlined" style="color: #3273dc; border-color: #3273dc;">
+                <a href="dang-ky.html" class="button is-outlined" style="color: #3273dc; border-color: #3273dc;">
                     Đăng ký
                 </a>
            </div>
@@ -648,12 +646,13 @@
      </div>
    </footer>
 
+   <script src="optimized-theme-switcher.js"></script>
    <script>
      // Toggle mobile menu
      document.addEventListener('DOMContentLoaded', () => {
        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
        if ($navbarBurgers.length > 0) {
-         $navbarBurgers.forEach( el => {
+         $navbarBurgers.forEach(el => {
            el.addEventListener('click', () => {
              const target = el.dataset.target;
              const $target = document.getElementById(target);
@@ -663,86 +662,6 @@
          });
        }
      });
-
-     // Xử lý chuyển đổi chế độ sáng/tối
-     const themeToggle = document.getElementById('theme-toggle');
-     const themeIcon = document.getElementById('theme-icon');
-     
-     // Hàm để thay đổi logo dựa trên theme
-     function updateLogo(theme) {
-       const siteLogo = document.getElementById('site-logo');
-       if (siteLogo) {
-         siteLogo.src = theme === 'dark' ? 'logodark.png' : 'logolight.png';
-       }
-     }
-     
-     // Hàm để áp dụng theme
-     function applyTheme(theme) {
-       document.documentElement.setAttribute('data-theme', theme);
-       if (theme === 'dark') {
-         themeIcon.classList.remove('mdi-weather-night');
-         themeIcon.classList.add('mdi-white-balance-sunny');
-       } else {
-         themeIcon.classList.remove('mdi-white-balance-sunny');
-         themeIcon.classList.add('mdi-weather-night');
-       }
-       updateLogo(theme);
-     }
-     
-     // Kiểm tra nếu người dùng đã chọn theme thủ công
-     const userTheme = localStorage.getItem('userTheme');
-     if (userTheme) {
-       applyTheme(userTheme);
-     } else {
-       // Nếu không có lựa chọn thủ công, sử dụng thiết lập của trình duyệt
-       const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-       if (prefersDarkScheme.matches) {
-         applyTheme('dark');
-       } else {
-         applyTheme('light');
-       }
-       
-       // Lắng nghe sự thay đổi trong thiết lập của trình duyệt
-       prefersDarkScheme.addEventListener('change', e => {
-         // Chỉ áp dụng nếu người dùng chưa chọn theme thủ công
-         if (!localStorage.getItem('userTheme')) {
-           applyTheme(e.matches ? 'dark' : 'light');
-         }
-       });
-     }
-     
-     // Xử lý sự kiện click vào nút chuyển đổi chế độ
-     themeToggle.addEventListener('click', () => {
-       const currentTheme = document.documentElement.getAttribute('data-theme');
-       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-       
-       applyTheme(newTheme);
-       // Lưu lựa chọn của người dùng
-       localStorage.setItem('userTheme', newTheme);
-     });
-     
-     // Thiết lập theme ban đầu trước khi trang tải xong
-     (function() {
-       const userTheme = localStorage.getItem('userTheme');
-       if (userTheme) {
-         document.documentElement.setAttribute('data-theme', userTheme);
-         // Cập nhật logo ngay khi trang tải
-         window.addEventListener('DOMContentLoaded', () => {
-           updateLogo(userTheme);
-         });
-       } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-         document.documentElement.setAttribute('data-theme', 'dark');
-         // Cập nhật logo ngay khi trang tải
-         window.addEventListener('DOMContentLoaded', () => {
-           updateLogo('dark');
-         });
-       } else {
-         // Cập nhật logo ngay khi trang tải
-         window.addEventListener('DOMContentLoaded', () => {
-           updateLogo('light');
-         });
-       }
-     })();
    </script>
 </body>
 </html>

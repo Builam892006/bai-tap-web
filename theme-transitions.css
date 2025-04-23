@@ -1,0 +1,46 @@
+/* Optimized theme transitions for better performance */
+
+/* Only transition specific properties on specific elements instead of using the universal selector */
+
+/* Base elements - only transition the most visually important properties */
+body {
+    transition: background-color 0.3s ease;
+    will-change: background-color;
+}
+
+/* Text elements - only transition color */
+p, h1, h2, h3, h4, h5, h6, span, a, .title, .subtitle, .content, .label, .help {
+    transition: color 0.3s ease;
+}
+
+/* Container elements - transition background and border */
+.card, .navbar, .footer, .section, .container, .box, .panel, .message {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Form elements */
+.input, .textarea, .select select, .button {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme toggle specific */
+.theme-toggle {
+    transition: background-color 0.2s ease;
+}
+
+/* Remove transition from elements that don't need it */
+img, svg, video, canvas, iframe, .icon, .image {
+    transition: none !important;
+}
+
+/* Optimize rendering performance */
+.navbar, .footer, .card, .section {
+    will-change: background-color;
+}
+
+/* Disable transitions when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

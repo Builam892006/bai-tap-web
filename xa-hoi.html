@@ -6,6 +6,7 @@
     <title>Xã Hội - Tin Kinh Tế</title>
     <link rel="stylesheet" href="./bulma/css/bulma.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./theme-transitions.css">
     <style>
         :root {
             /* Light mode variables */
@@ -208,10 +209,7 @@
             font-size: 1.2rem;
         }
 
-        /* Smooth transitions for all elements */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+        /* Transitions are now handled by theme-transitions.css */
     </style>
 </head>
 <body>
@@ -296,10 +294,10 @@
                 <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
            </div>
            <div class="signin">
-                <a href="#" class="button" style="background-color: #3273dc; color: white; border-color: #3273dc;">
+                <a href="dang-nhap.html" class="button" style="background-color: #3273dc; color: white; border-color: #3273dc;">
                     Đăng nhập
                 </a>
-                <a href="#" class="button is-outlined" style="color: #3273dc; border-color: #3273dc;">
+                <a href="dang-ky.html" class="button is-outlined" style="color: #3273dc; border-color: #3273dc;">
                     Đăng ký
                 </a>
            </div>
@@ -452,7 +450,7 @@
      </div>
    </footer>
 
-   <script src="theme-switcher.js"></script>
+   <script src="optimized-theme-switcher.js"></script>
    <script>
      // Toggle mobile menu
      document.addEventListener('DOMContentLoaded', () => {

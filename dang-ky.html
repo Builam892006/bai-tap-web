@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Tin Kinh Tế</title>
+    <link rel="stylesheet" href="./bulma/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./theme-transitions.css">
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #ffffff;
+            --text-color: #4a4a4a;
+            --card-background: #ffffff;
+            --card-border: #e0e0e0;
+            --navbar-background: #ffffff;
+            --navbar-shadow: rgba(10, 10, 10, 0.1);
+            --stockprice-background: #f5f5f5;
+            --stockprice-border: #e0e0e0;
+            --sidebar-border: #f0f0f0;
+            --footer-background: #fafafa;
+            --market-analysis-background: #f9f9f9;
+            --timestamp-color: #888;
+            --table-stripe: #f5f5f5;
+            --link-color: #3273dc;
+            --link-hover-color: #276cda;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #3273dc;
+            --primary-light: #eef3fc;
+            --border-light: #f0f0f0;
+            --box-shadow-color: rgba(10, 10, 10, 0.1);
+            --hover-background: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables */
+            --background-color: #121212;
+            --text-color: #e4e4e4;
+            --card-background: #1e1e1e;
+            --card-border: #333333;
+            --navbar-background: #1a1a1a;
+            --navbar-shadow: rgba(0, 0, 0, 0.3);
+            --stockprice-background: #1e1e1e;
+            --stockprice-border: #333333;
+            --sidebar-border: #333333;
+            --footer-background: #1a1a1a;
+            --market-analysis-background: #1e1e1e;
+            --timestamp-color: #aaaaaa;
+            --table-stripe: #252525;
+            --link-color: #4a9df8;
+            --link-hover-color: #6aadff;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #4a9df8;
+            --primary-light: #1c2938;
+            --border-light: #333333;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background: #252525;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: var(--navbar-background);
+            box-shadow: 0 2px 3px var(--navbar-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item, .navbar-link {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dropdown {
+            background-color: var(--navbar-background);
+            border-color: var(--border-light);
+        }
+
+        .navbar-divider {
+            background-color: var(--border-light);
+        }
+
+        .footer {
+            background-color: var(--footer-background);
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .register-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--card-background);
+            border-radius: 6px;
+            box-shadow: 0 2px 3px var(--box-shadow-color);
+            border: 1px solid var(--card-border);
+        }
+
+        .register-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .input, .textarea, .select select {
+            background-color: var(--card-background);
+            border-color: var(--border-light);
+            color: var(--text-color);
+        }
+
+        .input:focus, .textarea:focus, .select select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .button {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .button.is-primary {
+            background-color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-background);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Transitions are now handled by theme-transitions.css */
+    </style>
+</head>
+<body>
+    <!-- Thanh điều hướng -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="trang-chu-tin-tai-chinh.html">
+                <img id="site-logo" src="logolight.png" width="112" height="28" alt="Tin Kinh Tế Logo">
+            </a>
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div id="Menu" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="./trang-chu-tin-tai-chinh.html" class="navbar-item">
+                    Trang Chủ
+                </a>
+                <a href="./xa-hoi.html" class="navbar-item">
+                    Xã Hội
+                </a>
+                <a href="./chung-khoan.html" class="navbar-item">
+                    Chứng khoán
+                </a>
+                <a href="./tai-chinh.html" class="navbar-item">
+                    Tài chính
+                </a>
+                <a href="./bat-dong-san.html" class="navbar-item">
+                    Bất động sản
+                </a>
+            </div>
+        
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="theme-toggle" id="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
+                        <i class="mdi mdi-weather-night" id="theme-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Phần đăng ký -->
+    <section class="section">
+        <div class="container">
+            <div class="register-container">
+                <h1 class="register-title title is-3">Đăng Ký Tài Khoản</h1>
+                
+                <form id="register-form">
+                    <div class="field">
+                        <label class="label">Họ và tên</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="text" placeholder="Nhập họ và tên đầy đủ" required>
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-account"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="email" placeholder="Nhập địa chỉ email" required>
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-email"></i>
+                            </span>
+                        </div>
+                        <p class="help">Email này sẽ được sử dụng để đăng nhập và nhận thông báo</p>
+                    </div>
+                    
+                    <div class="field">
+                        <label class="label">Tên đăng nhập</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="text" placeholder="Tạo tên đăng nhập" required>
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-account-circle"></i>
+                            </span>
+                        </div>
+                        <p class="help">Tên đăng nhập phải có ít nhất 5 ký tự, không chứa khoảng trắng</p>
+                    </div>
+                    
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Mật khẩu</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password" placeholder="Tạo mật khẩu" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="mdi mdi-lock"></i>
+                                    </span>
+                                </div>
+                                <p class="help">Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số</p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Xác nhận mật khẩu</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password" placeholder="Nhập lại mật khẩu" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="mdi mdi-lock-check"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label class="label">Số điện thoại</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="tel" placeholder="Nhập số điện thoại">
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-phone"></i>
+                            </span>
+                        </div>
+                        <p class="help">Không bắt buộc, nhưng giúp bảo vệ tài khoản của bạn</p>
+                    </div>
+                    
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" required>
+                                Tôi đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Tôi muốn nhận thông báo về tin tức và ưu đãi qua email
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary is-fullwidth">Đăng Ký</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="has-text-centered mt-4">
+                    <p>Đã có tài khoản? <a href="dang-nhap.html">Đăng nhập ngay</a></p>
+                </div>
+                
+                <div class="is-divider" data-content="HOẶC"></div>
+                
+                <div class="buttons is-centered">
+                    <button class="button is-light">
+                        <span class="icon">
+                            <i class="mdi mdi-google" style="color: #DB4437;"></i>
+                        </span>
+                        <span>Đăng ký với Google</span>
+                    </button>
+                    <button class="button is-light">
+                        <span class="icon">
+                            <i class="mdi mdi-facebook" style="color: #4267B2;"></i>
+                        </span>
+                        <span>Đăng ký với Facebook</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Tin Kinh Tế</strong> - Trang tin tài chính hàng đầu Việt Nam.
+                <br>
+                © 2025 Tin Kinh Tế. Tất cả các quyền được bảo lưu.
+            </p>
+        </div>
+    </footer>
+
+    <script src="optimized-theme-switcher.js"></script>
+    <script>
+        // Burger menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
