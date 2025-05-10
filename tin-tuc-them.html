@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tin Kinh Tế - Trang tin tài chính hàng đầu</title>
+    <title>Tin Tức Thêm - Tin Kinh Tế</title>
     <link rel="stylesheet" href="./bulma/css/bulma.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="./theme-transitions.css">
@@ -71,6 +71,7 @@
             box-shadow: 0 2px 3px var(--box-shadow-color);
             border: 1px solid var(--card-border);
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1.5rem;
         }
 
         .card .title, .card .subtitle, .title, .subtitle {
@@ -147,10 +148,6 @@
             display: inline-block;
         }
 
-        .featured-news {
-            margin-bottom: 1rem;
-        }
-
         .news-card {
             height: 100%;
             display: flex;
@@ -197,14 +194,6 @@
 
         .section {
             padding: 1.5rem;
-        }
-
-        .market-analysis {
-            background-color: var(--market-analysis-background);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--card-border);
-            transition: background-color 0.3s ease;
         }
 
         .timestamp {
@@ -300,7 +289,41 @@
             font-size: 1.2rem;
         }
 
-        /* Transitions are now handled by theme-transitions.css */
+        /* News list specific styles */
+        .news-list-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .news-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-card {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--card-background);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            box-shadow: 0 4px 8px var(--box-shadow-color);
+            transform: translateY(-2px);
+        }
+
+        .topic-card .icon {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -320,7 +343,7 @@
    
      <div id="Menu" class="navbar-menu">
        <div class="navbar-start">
-         <a href="./trang-chu-tin-tai-chinh.html" class="navbar-item is-active">
+         <a href="./trang-chu-tin-tai-chinh.html" class="navbar-item">
             Trang Chủ
          </a>
          <a href="./xa-hoi.html" class="navbar-item">
@@ -443,358 +466,281 @@
 
    <!-- Nội dung chính -->
    <div class="container">
-     <!-- Tin nổi bật -->
-     <section class="featured-news section">
-       <h2 class="title is-4 has-text-centered">Tin Nổi Bật</h2>
-       <div class="columns">
-         <div class="column is-8">
-           <div class="card">
-             <div class="card-image">
-               <span class="tag is-primary news-tag">Tin hot</span>
-               <figure class="image is-16by9">
+     <h1 class="title is-2 has-text-centered page-title">Tin Tức Tài Chính - Kinh Tế</h1>
+     
+     <div class="columns">
+       <!-- Cột bên trái - Danh sách tin tức -->
+       <div class="column is-8">
+         <!-- Tin tức 1 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
+               <figure class="image is-3by2">
                  <img src="https://media.vneconomy.vn/w800/images/upload/2025/03/22/anh-man-hinh-2025-03-22-luc-07-44-28.png" alt="Chứng khoán Mỹ hồi phục">
                </figure>
              </div>
-             <div class="card-content">
-               <p class="title is-4">Chứng khoán Mỹ hồi phục sau 4 tuần "đỏ" liên tiếp, giá dầu cũng tăng</p>
+             <div class="column is-8">
+               <h3 class="title is-4">Chứng khoán Mỹ hồi phục sau 4 tuần "đỏ" liên tiếp, giá dầu cũng tăng</h3>
                <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 08:30</p>
                <div class="content">
-                 <p>Thị trường chứng khoán Mỹ tăng điểm nhẹ trong phiên ngày thứ Sáu (21/3), hoàn tất một tuần tăng và chấm dứt chuỗi 4 tuần giảm liên tiếp dưới áp lực từ thuế quan, mối lo suy thoái và sự dịch chuyển của dòng tiền khỏi các cổ phiếu công nghệ vốn hóa lớn. Giá dầu thô cũng tăng trong tuần này, khi các biện pháp trừng phạt mới của Mỹ liên quan tới Iran đặt ra rủi ro thắt chặt nguồn cung dầu.</p>
+                 <p>Thị trường chứng khoán Mỹ tăng điểm nhẹ trong phiên ngày thứ Sáu (21/3), hoàn tất một tuần tăng và chấm dứt chuỗi 4 tuần giảm liên tiếp dưới áp lực từ thuế quan, mối lo suy thoái và sự dịch chuyển của dòng tiền khỏi các cổ phiếu công nghệ vốn hóa lớn.</p>
                  <a href="./news/chung-khoan-my-hoi-phuc-sau-4-tuan-do-lien-tiep-gia-dau-cung-tang.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
          </div>
-         <div class="column is-4">
-           <div class="card news-card">
-             <div class="card-image">
+
+         <!-- Tin tức 2 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
                <figure class="image is-3by2">
                  <img src="https://image.sggp.org.vn/w680/Uploaded/2025/kiuvpcvo/2025_04_14/img-9886-779-6166.png.webp" alt="VN-Index tăng điểm">
                </figure>
              </div>
-             <div class="card-content">
-               <p class="title is-5">Chứng khoán tiếp tục phục hồi mạnh phiên thứ 3</p>
+             <div class="column is-8">
+               <h3 class="title is-4">Chứng khoán tiếp tục phục hồi mạnh phiên thứ 3</h3>
                <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 15:45</p>
                <div class="content">
-                 <p>VN-Index ghi nhận phiên phục hồi thứ 3 liên tục, trong đó có sự góp phần lớn của nhóm cổ phiếu vốn hóa lớn...</p> 
-                 <a href="./news/chung-khoan-tiep-tuc-phuc-hoi-manh-phien-thu-3.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 <p>VN-Index ghi nhận phiên phục hồi thứ 3 liên tục, trong đó có sự góp phần lớn của nhóm cổ phiếu vốn hóa lớn. Thanh khoản thị trường cũng đã cải thiện đáng kể so với các phiên trước đó, cho thấy dòng tiền đang quay trở lại thị trường.</p>
+                 <a href="./news/chung-khoan-tiep-tuc-phuc-hoi-manh-phien-thu-3.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
          </div>
-       </div>
-     </section>
 
-     <!-- Phân tích thị trường -->
-     <section class="market-analysis">
-       <h2 class="title is-4">Phân tích thị trường</h2>
-       <div class="columns">
-         <div class="column is-4">
-           <div class="card news-card">
-             <div class="card-image">
+         <!-- Tin tức 3 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
                <figure class="image is-3by2">
                  <img src="https://media.tapchitaichinh.vn/w1480/images/upload/2024/12/27/room-tin-dung-1735206592-500x300.jpg" alt="Lãi suất ngân hàng">
                </figure>
              </div>
-             <div class="card-content">
-               <p class="title is-5">Dự báo mặt bằng lãi suất ngân hàng năm 2025</p>
-               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 10:15</p>
+             <div class="column is-8">
+               <h3 class="title is-4">Dự báo mặt bằng lãi suất ngân hàng năm 2025</h3>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 10:30</p>
                <div class="content">
-                 <p>Dự báo, năm 2025, mặt bằng lãi suất sẽ tăng nhẹ nhưng tiếp tục duy trì mặt bằng thấp; Lãi suất cho vay dự kiến đi ngang trong...</p>
-                 <a href="./news/du-bao-mat-bang-lai-suat-ngan-hang-nam-2025.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 <p>Theo các chuyên gia tài chính, mặt bằng lãi suất ngân hàng trong năm 2025 được dự báo sẽ duy trì ở mức thấp trong nửa đầu năm và có thể tăng nhẹ vào nửa cuối năm khi nền kinh tế phục hồi mạnh mẽ hơn.</p>
+                 <a href="./news/du-bao-mat-bang-lai-suat-ngan-hang-nam-2025.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
          </div>
-         <div class="column is-4">
-           <div class="card news-card">
-             <div class="card-image">
+
+         <!-- Tin tức 4 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
                <figure class="image is-3by2">
-                 <img src="https://static-images.vnncdn.net/vps_images_publish/000001/000003/2025/4/14/palmy-biztown2-41185.jpg?width=0&s=31wiw-5qoEGUso76eyIlQg" alt="Bất động sản">
+                 <img src="https://cdn.tuoitre.vn/thumb_w/640/471584752817336320/2025/3/15/bat-dong-san-16783-1710494580698880800225.jpg" alt="Bất động sản">
                </figure>
              </div>
-             <div class="card-content">
-               <p class="title is-5">Bất động sản phía Nam Hà Nội khởi sắc: Thanh Trì ‘đón sóng’ phát triển</p>
-               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 14:30</p>
+             <div class="column is-8">
+               <h3 class="title is-4">Thị trường bất động sản phía Nam khởi sắc trong quý 1/2025</h3>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 14:15</p>
                <div class="content">
-                 <p>Với định hướng quy hoạch rõ ràng và những nỗ lực đầu tư mạnh mẽ vào hạ tầng giao thông, huyện Thanh Trì - cửa ngõ phía Nam Hà Nội...</p>
-                 <a href="./news/bat-dong-san-phia-nam-ha-noi-khoi-sac-thanh-tri-don-song-phat-trien.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 <p>Báo cáo mới nhất từ các công ty nghiên cứu thị trường cho thấy, thị trường bất động sản phía Nam đã có những tín hiệu khởi sắc trong quý 1/2025 với lượng giao dịch tăng 15% so với cùng kỳ năm trước.</p>
+                 <a href="./news/thi-truong-bat-dong-san-phia-nam-khoi-sac-trong-quy-1-2025.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
          </div>
-         <div class="column is-4">
-           <div class="card news-card">
-             <div class="card-image">
+
+         <!-- Tin tức 5 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
                <figure class="image is-3by2">
-                 <img src="https://image.anninhthudo.vn/Uploaded/2025/ngrugt/2023_12_21/gia-vang-9225.jpg" alt="Giá vàng">
+                 <img src="https://cafefcdn.com/thumb_w/640/pr/2025/1710494580698-0.jpg" alt="Vốn FDI">
                </figure>
              </div>
-             <div class="card-content">
-               <p class="title is-5">Giá vàng lên 108 triệu đồng/lượng, cao nhất từ trước đến nay</p>
+             <div class="column is-8">
+               <h3 class="title is-4">Vốn FDI đăng ký vào Việt Nam trong quý 1/2025 đạt gần 11 tỷ USD, tăng 34,7%</h3>
                <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 18/03/2025 - 09:45</p>
                <div class="content">
-                 <p>Giá vàng miếng SJC đã tăng hơn 2 triệu đồng ở chiều mua vào và 1,5 triệu đồng ở chiều bán ra so với cuối tuần trước...</p>
-                 <a href="./news/gia-vang-len-108-trieu-dongluong-cao-nhat-tu-truoc-den-nay.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 <p>Báo cáo mới nhất từ Cục Đầu tư nước ngoài (Bộ Tài chính) cho biết, tổng vốn đầu tư nước ngoài (FDI) đăng ký vào Việt Nam tính đến ngày 31/3/2025 đạt gần 11 tỷ USD, tăng 34,7% so với cùng kỳ năm 2024.</p>
+                 <a href="./news/von-fdi-dang-ky-vao-viet-nam-trong-quy-1-2025-dat-gan-11-ty-usd-tang-34-7.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
          </div>
-       </div>
-     </section>
 
-     <!-- Tin tức chính -->
-     <section class="section">
-       <div class="columns">
-         <div class="column is-8">
-           <h2 class="title is-4">Tin Mới Nhất</h2>
-           
-           <div class="columns is-multiline">
-             <div class="column is-6">
-               <div class="card news-card">
-                 <div class="card-image">
-                   <figure class="image is-3by2">
-                     <img src="https://tttctt.1cdn.vn/2024/09/21/ngan-hang-tpbank-04.jpg" alt="Ngân hàng">
-                   </figure>
-                 </div>
-                 <div class="card-content">
-                   <p class="title is-5">TPBank dẫn đầu về hỗ trợ doanh nghiệp SME 3 năm liên tiếp</p>
-                   <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 07:30</p>
-                   <div class="content">
-                     <p>Với những nỗ lực vượt trội trong hoạt động tài trợ thương mại tại Việt Nam, Ngân hàng TMCP Tiên...</p>
-                     <a href="./news/tpbank-dan-dau-ve-ho-tro-doanh-nghiep-sme-3-nam-lien-tiep.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
-                   </div>
-                 </div>
-               </div>
+         <!-- Tin tức 6 -->
+         <div class="news-list-item">
+           <div class="columns">
+             <div class="column is-4">
+               <figure class="image is-3by2">
+                 <img src="https://static-images.vnncdn.net/vps_images_publish/000001/000003/2025/3/18/startup-filum-ai-98135.png?width=0&s=7V1z4Hweo12F3k365PzTGw" alt="Công nghệ">
+               </figure>
              </div>
-             
-             <div class="column is-6">
-               <div class="card news-card">
-                 <div class="card-image">
-                   <figure class="image is-3by2">
-                     <img src="https://media.tapchitaichinh.vn/w1480/images/upload//2025/04/14/che-bienanh-2-1.jpg" alt="Xuất khẩu">
-                   </figure>
-                 </div>
-                 <div class="card-content">
-                   <p class="title is-5">Giá trị gia tăng nông, lâm, thủy sản quý I/2025 đạt mức cao nhất trong 4 năm qua</p>
-                   <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 16:20</p>
-                   <div class="content">
-                     <p>Theo Bộ Nông nghiệp và Môi trường, tốc độ giá trị gia tăng nông, lâm nghiệp và thủy sản quý I/2025 đạt 3,74%, đây là mức tăng cao nhất trong quý I...</p>
-                     <a href="./news/gia-tri-gia-tang-nong-lam-thuy-san-quy-i-2025-dat-muc-cao-nhat-trong-4-nam-qua.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             
-             <div class="column is-6">
-               <div class="card news-card">
-                 <div class="card-image">
-                   <figure class="image is-3by2">
-                     <img src="https://media.vneconomy.vn/w800/images/upload/2025/04/06/8ca21adbeaf87df8e43502db6871ae6e.jpg" alt="FDI">
-                   </figure>
-                 </div>
-                 <div class="card-content">
-                   <p class="title is-5">Vốn FDI đăng ký vào Việt Nam trong quý 1/2025 đạt gần 11 tỷ USD, tăng 34,7%</p>
-                   <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 11:45</p>
-                   <div class="content">
-                     <p>Báo cáo mới nhất từ Cục Đầu tư nước ngoài (Bộ Tài chính) cho biết, tổng vốn đầu tư nước ngoài (FDI) đăng ký vào Việt Nam tính đến ngày 31/3/2025...</p>
-                     <a href="./news/von-fdi-dang-ky-vao-viet-nam-trong-quy-1-2025-dat-gan-11-ty-usd-tang-34-7.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             
-             <div class="column is-6">
-               <div class="card news-card">
-                 <div class="card-image">
-                   <figure class="image is-3by2">
-                     <img src="https://static-images.vnncdn.net/vps_images_publish/000001/000003/2025/3/18/startup-filum-ai-98135.png?width=0&s=7V1z4Hweo12F3k365PzTGw" alt="Công nghệ">
-                   </figure>
-                 </div>
-                 <div class="card-content">
-                   <p class="title is-5">Startup Việt gọi vốn thành công 1 triệu USD để phát triển AI</p>
-                   <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 13:10</p>
-                   <div class="content">
-                     <p>Filum AI – startup Việt Nam được thành lập từ năm 2020 vừa huy động thành công 1 triệu USD từ nhiều quỹ đầu tư lớn trong khu vực.</p>
-                     <a href="./news/startup-viet-goi-von-thanh-cong-1-trieu-usd-de-phat-trien-ai.html" class="button is-small is-link is-outlined">Đọc tiếp</a>
-                   </div>
-                 </div>
+             <div class="column is-8">
+               <h3 class="title is-4">Startup Việt gọi vốn thành công 1 triệu USD để phát triển AI</h3>
+               <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 13:10</p>
+               <div class="content">
+                 <p>Filum AI – startup Việt Nam được thành lập từ năm 2020 vừa huy động thành công 1 triệu USD từ nhiều quỹ đầu tư lớn trong khu vực. Khoản đầu tư này sẽ giúp công ty đẩy mạnh nghiên cứu và phát triển các giải pháp AI cho thị trường tài chính.</p>
+                 <a href="./news/startup-viet-goi-von-thanh-cong-1-trieu-usd-de-phat-trien-ai.html" class="button is-link is-outlined">Đọc tiếp</a>
                </div>
              </div>
            </div>
+         </div>
+
+         <!-- Phân trang -->
+         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+           <a class="pagination-previous">Trang trước</a>
+           <a class="pagination-next">Trang sau</a>
+           <ul class="pagination-list">
+             <li><a class="pagination-link is-current" aria-label="Trang 1" aria-current="page">1</a></li>
+             <li><a class="pagination-link" aria-label="Đến trang 2">2</a></li>
+             <li><a class="pagination-link" aria-label="Đến trang 3">3</a></li>
+             <li><span class="pagination-ellipsis">&hellip;</span></li>
+             <li><a class="pagination-link" aria-label="Đến trang 8">8</a></li>
+           </ul>
+         </nav>
+       </div>
+       
+       <!-- Cột bên phải - Chủ đề nổi bật -->
+       <div class="column is-4 sidebar-news">
+         <!-- Chủ đề nổi bật -->
+         <div class="sidebar-section">
+           <h3 class="title is-4 sidebar-title">Chủ Đề Nổi Bật</h3>
            
-           <div class="has-text-centered mt-5">
-             <a href="./tin-tuc-them.html" class="button is-link">Xem thêm tin tức</a>
-           </div>
+           <!-- Chủ đề 1 -->
+           <a href="./chung-khoan.html" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-chart-line"></i></span>
+               <span class="title is-5">Chứng Khoán</span>
+             </div>
+             <p>Cập nhật thông tin mới nhất về thị trường chứng khoán trong và ngoài nước</p>
+           </a>
+           
+           <!-- Chủ đề 2 -->
+           <a href="./tai-chinh.html" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-bank"></i></span>
+               <span class="title is-5">Tài Chính - Ngân Hàng</span>
+             </div>
+             <p>Tin tức về hoạt động ngân hàng, chính sách tiền tệ và tài chính</p>
+           </a>
+           
+           <!-- Chủ đề 3 -->
+           <a href="./bat-dong-san.html" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-home-city"></i></span>
+               <span class="title is-5">Bất Động Sản</span>
+             </div>
+             <p>Thông tin thị trường bất động sản, dự án mới và xu hướng đầu tư</p>
+           </a>
+           
+           <!-- Chủ đề 4 -->
+           <a href="#" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-office-building"></i></span>
+               <span class="title is-5">Doanh Nghiệp</span>
+             </div>
+             <p>Tin tức về hoạt động kinh doanh của các doanh nghiệp trong và ngoài nước</p>
+           </a>
+           
+           <!-- Chủ đề 5 -->
+           <a href="#" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-currency-usd"></i></span>
+               <span class="title is-5">Đầu Tư</span>
+             </div>
+             <p>Chiến lược đầu tư, cơ hội và rủi ro trên các thị trường tài chính</p>
+           </a>
+           
+           <!-- Chủ đề 6 -->
+           <a href="#" class="topic-card is-block">
+             <div class="is-flex is-align-items-center">
+               <span class="icon"><i class="mdi mdi-chart-areaspline"></i></span>
+               <span class="title is-5">Kinh Tế Vĩ Mô</span>
+             </div>
+             <p>Phân tích và dự báo về tình hình kinh tế trong nước và quốc tế</p>
+           </a>
          </div>
          
-         <!-- Sidebar -->
-         <div class="column is-4 sidebar-news">
-           <div class="sidebar-section">
-             <h3 class="title is-4 sidebar-title">Tin Nóng</h3>
-             <div class="media-list">
-               <article class="media">
-                 <figure class="media-left">
-                   <p class="image is-64x64">
-                     <img src="https://static.fireant.vn/Upload/20240309/images/image(2).png" alt="Tiền ảo">
-                   </p>
-                 </figure>
-                 <div class="media-content">
-                   <p class="title is-6">Bitcoin vượt mốc 70.000 USD, lập kỷ lục mới</p>
-                   <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 09:15</p>
-                 </div>
-               </article>
-               
-               <article class="media">
-                 <figure class="media-left">
-                   <p class="image is-64x64">
-                     <img src="https://resource.kinhtedothi.vn/2023/03/29/cpi.jpg" alt="Lạm phát">
-                   </p>
-                 </figure>
-                 <div class="media-content">
-                   <p class="title is-6">CPI tháng 3 tăng 0,45% so với tháng trước</p>
-                   <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 14:00</p>
-                 </div>
-               </article>
-               
-               <article class="media">
-                 <figure class="media-left">
-                   <p class="image is-64x64">
-                     <img src="https://media.tapchitaichinh.vn/w1480/images/upload/2024/10/29/anh-3.jpg" alt="Doanh nghiệp">
-                   </p>
-                 </figure>
-                 <div class="media-content">
-                   <p class="title is-6">Vingroup ra mắt quỹ đầu tư công nghệ Vinventures</p>
-                   <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 10:30</p>
-                 </div>
-               </article>
-               
-               <article class="media">
-                 <figure class="media-left">
-                   <p class="image is-64x64">
-                     <img src="https://i1-kinhdoanh.vnecdn.net/2024/01/22/DSC-2072-9386-1705914906.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ij2vwW-L-GomxyCXdifUoA" alt="Tỷ giá">
-                   </p>
-                 </figure>
-                 <div class="media-content">
-                   <p class="title is-6">Tỷ giá USD/VND tăng nhẹ, vượt mốc 25.000 đồng</p>
-                   <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 15:45</p>
-                 </div>
-               </article>
-               
-               <article class="media">
-                 <figure class="media-left">
-                   <p class="image is-64x64">
-                     <img src="https://imgnvsk.vnanet.vn/MediaUpload/Content/2025/02/18/1018-15-3-26.jpg" alt="Thương mại">
-                   </p>
-                 </figure>
-                 <div class="media-content">
-                   <p class="title is-6">Việt Nam và EU đàm phán nâng cấp Hiệp định EVFTA</p>
-                   <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 18/03/2025 - 11:20</p>
-                 </div>
-               </article>
-             </div>
-           </div>
-           
-           <div class="sidebar-section mt-5">
-             <h3 class="title is-4 sidebar-title">Tỷ giá ngoại tệ</h3>
-             <table class="table is-fullwidth is-striped is-narrow">
-               <thead>
-                 <tr>
-                   <th>Ngoại tệ</th>
-                   <th>Mua</th>
-                   <th>Bán</th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr>
-                   <td>USD</td>
-                   <td>25,010</td>
-                   <td>25,080</td>
-                 </tr>
-                 <tr>
-                   <td>EUR</td>
-                   <td>26,850</td>
-                   <td>27,150</td>
-                 </tr>
-                 <tr>
-                   <td>GBP</td>
-                   <td>31,750</td>
-                   <td>32,250</td>
-                 </tr>
-                 <tr>
-                   <td>JPY</td>
-                   <td>162.5</td>
-                   <td>164.8</td>
-                 </tr>
-                 <tr>
-                   <td>CNY</td>
-                   <td>3,450</td>
-                   <td>3,520</td>
-                 </tr>
-               </tbody>
-             </table>
-             <p class="has-text-right is-size-7 timestamp">Cập nhật: 22/03/2025 - 08:00</p>
-           </div>
-           
-           <div class="sidebar-section mt-5">
-             <h3 class="title is-4 sidebar-title">Giá vàng</h3>
-             <table class="table is-fullwidth is-striped is-narrow">
-               <thead>
-                 <tr>
-                   <th>Loại</th>
-                   <th>Mua vào</th>
-                   <th>Bán ra</th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr>
-                   <td>SJC</td>
-                   <td>79,800,000</td>
-                   <td>80,200,000</td>
-                 </tr>
-                 <tr>
-                   <td>DOJI</td>
-                   <td>79,750,000</td>
-                   <td>80,150,000</td>
-                 </tr>
-                 <tr>
-                   <td>PNJ</td>
-                   <td>79,700,000</td>
-                   <td>80,100,000</td>
-                 </tr>
-                 <tr>
-                   <td>Vàng nhẫn 9999</td>
-                   <td>79,200,000</td>
-                   <td>79,700,000</td>
-                 </tr>
-               </tbody>
-             </table>
-             <p class="has-text-right is-size-7 timestamp">Cập nhật: 22/03/2025 - 08:00</p>
+         <!-- Tin nổi bật -->
+         <div class="sidebar-section mt-5">
+           <h3 class="title is-4 sidebar-title">Tin Nổi Bật</h3>
+           <div class="media-list">
+             <article class="media">
+               <figure class="media-left">
+                 <p class="image is-64x64">
+                   <img src="https://static.fireant.vn/Upload/20240309/images/image(2).png" alt="Tiền ảo">
+                 </p>
+               </figure>
+               <div class="media-content">
+                 <p class="title is-6">Bitcoin vượt mốc 70.000 USD, lập kỷ lục mới</p>
+                 <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 09:15</p>
+               </div>
+             </article>
+             
+             <article class="media">
+               <figure class="media-left">
+                 <p class="image is-64x64">
+                   <img src="https://cdn.tuoitre.vn/thumb_w/480/2025/3/21/fed-16783-1710494580698880800225.jpg" alt="Fed">
+                 </p>
+               </figure>
+               <div class="media-content">
+                 <p class="title is-6">Fed giữ nguyên lãi suất, dự kiến cắt giảm 3 lần trong năm 2025</p>
+                 <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 07:30</p>
+               </div>
+             </article>
+             
+             <article class="media">
+               <figure class="media-left">
+                 <p class="image is-64x64">
+                   <img src="https://image.thanhnien.vn/w2048/Uploaded/2025/zxbfzdjzs/2025_03_20/vang-sjc-6834-9928.jpg" alt="Giá vàng">
+                 </p>
+               </figure>
+               <div class="media-content">
+                 <p class="title is-6">Giá vàng SJC lập đỉnh mới, vượt 90 triệu đồng/lượng</p>
+                 <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 16:45</p>
+               </div>
+             </article>
+             
+             <article class="media">
+               <figure class="media-left">
+                 <p class="image is-64x64">
+                   <img src="https://image.vietnamfinance.vn/w800/uploaded/2025/iorwi/2025_03_19/xuat-khau-16783-1710494580698880800225.jpg" alt="Xuất khẩu">
+                 </p>
+               </figure>
+               <div class="media-content">
+                 <p class="title is-6">Kim ngạch xuất khẩu 2 tháng đầu năm tăng 19,2%</p>
+                 <p class="subtitle is-7 timestamp"><i class="mdi mdi-clock-outline"></i> 19/03/2025 - 10:20</p>
+               </div>
+             </article>
            </div>
          </div>
        </div>
-     </section>
+     </div>
    </div>
 
    <!-- Footer -->
    <footer class="footer">
      <div class="container">
        <div class="columns">
-         <div class="column is-4">
-           <h3 class="title is-5">Về Tin Kinh Tế</h3>
-           <p>Tin Kinh Tế là trang tin tức tài chính hàng đầu Việt Nam, cung cấp thông tin cập nhật và phân tích chuyên sâu về thị trường tài chính, chứng khoán, bất động sản và kinh tế vĩ mô.</p>
+         <div class="column is-3">
+           <h3 class="title is-5">Về chúng tôi</h3>
+           <p>Tin Kinh Tế - Trang tin tài chính hàng đầu Việt Nam, cung cấp thông tin chính xác và cập nhật về thị trường tài chính, chứng khoán, bất động sản và kinh tế.</p>
            <div class="social-icons mt-3">
-             <a href="#" class="icon is-medium"><i class="mdi mdi-facebook mdi-24px"></i></a>
-             <a href="#" class="icon is-medium"><i class="mdi mdi-twitter mdi-24px"></i></a>
-             <a href="#" class="icon is-medium"><i class="mdi mdi-linkedin mdi-24px"></i></a>
-             <a href="#" class="icon is-medium"><i class="mdi mdi-youtube mdi-24px"></i></a>
+             <a href="#" class="mr-2"><i class="mdi mdi-facebook mdi-24px"></i></a>
+             <a href="#" class="mr-2"><i class="mdi mdi-twitter mdi-24px"></i></a>
+             <a href="#" class="mr-2"><i class="mdi mdi-linkedin mdi-24px"></i></a>
+             <a href="#" class="mr-2"><i class="mdi mdi-youtube mdi-24px"></i></a>
            </div>
          </div>
+         <div class="column is-3">
+           <h3 class="title is-5">Liên hệ</h3>
+           <p><i class="mdi mdi-map-marker mr-2"></i> 123 Đường Nguyễn Huệ, Quận 1, TP.HCM</p>
+           <p><i class="mdi mdi-phone mr-2"></i> (028) 3822 5678</p>
+           <p><i class="mdi mdi-email mr-2"></i> info@tinkinhte.vn</p>
+         </div>
          <div class="column is-2">
-           <h3 class="title is-5">Danh mục</h3>
+           <h3 class="title is-5">Chuyên mục</h3>
            <ul>
              <li><a href="trang-chu-tin-tai-chinh.html">Trang chủ</a></li>
-             <li><a href="xa-hoi.html">Xã hội</a></li>
              <li><a href="chung-khoan.html">Chứng khoán</a></li>
              <li><a href="tai-chinh.html">Tài chính</a></li>
              <li><a href="bat-dong-san.html">Bất động sản</a></li>
