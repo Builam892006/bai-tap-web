@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chủ Đề Nổi Bật - Tin Kinh Tế</title>
+    <link rel="stylesheet" href="./bulma/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./theme-transitions.css">
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #ffffff;
+            --text-color: #4a4a4a;
+            --card-background: #ffffff;
+            --card-border: #e0e0e0;
+            --navbar-background: #ffffff;
+            --navbar-shadow: rgba(10, 10, 10, 0.1);
+            --stockprice-background: #f5f5f5;
+            --stockprice-border: #e0e0e0;
+            --sidebar-border: #f0f0f0;
+            --footer-background: #fafafa;
+            --market-analysis-background: #f9f9f9;
+            --timestamp-color: #888;
+            --table-stripe: #f5f5f5;
+            --link-color: #3273dc;
+            --link-hover-color: #276cda;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #3273dc;
+            --primary-light: #eef3fc;
+            --border-light: #f0f0f0;
+            --box-shadow-color: rgba(10, 10, 10, 0.1);
+            --hover-background: #f5f5f5;
+            --hashtag-bg-light: #eef3fc;
+            --hashtag-bg-dark: #1c2938;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables */
+            --background-color: #121212;
+            --text-color: #e4e4e4;
+            --card-background: #1e1e1e;
+            --card-border: #333333;
+            --navbar-background: #1a1a1a;
+            --navbar-shadow: rgba(0, 0, 0, 0.3);
+            --stockprice-background: #1e1e1e;
+            --stockprice-border: #333333;
+            --sidebar-border: #333333;
+            --footer-background: #1a1a1a;
+            --market-analysis-background: #1e1e1e;
+            --timestamp-color: #aaaaaa;
+            --table-stripe: #252525;
+            --link-color: #4a9df8;
+            --link-hover-color: #6aadff;
+            --success-color: #48c774;
+            --danger-color: #f14668;
+            --primary-color: #4a9df8;
+            --primary-light: #1c2938;
+            --border-light: #333333;
+            --box-shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background: #252525;
+            --hashtag-bg-light: #1c2938;
+            --hashtag-bg-dark: #4a9df8;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 3px var(--box-shadow-color);
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card .title, .card .subtitle, .title, .subtitle {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .card .content {
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--navbar-background);
+            box-shadow: 0 2px 3px var(--navbar-shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item, .navbar-link {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dropdown {
+            background-color: var(--navbar-background);
+            border-color: var(--border-light);
+        }
+
+        .navbar-divider {
+            background-color: var(--border-light);
+        }
+
+        .search-box {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .signin {
+            display: inline-block;
+        }
+
+        .news-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-background);
+            transition: background-color 0.3s ease;
+        }
+
+        .news-card .card-content {
+            flex-grow: 1;
+            padding: 1rem;
+        }
+
+        .news-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        .footer {
+            background-color: var(--footer-background);
+            padding: 3rem 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .timestamp {
+            color: var(--timestamp-color);
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        a {
+            color: var(--link-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .has-text-success {
+            color: var(--success-color) !important;
+        }
+
+        .has-text-danger {
+            color: var(--danger-color) !important;
+        }
+
+        hr {
+            background-color: var(--border-light);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-background);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Topic cluster styles */
+        .topic-cluster {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 6px;
+            background-color: var(--card-background);
+            border: 1px solid var(--card-border);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-title {
+            margin-right: 1rem;
+            margin-bottom: 0 !important;
+        }
+
+        .hashtag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .hashtag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .topic-divider {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--background-color) 100%);
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .card-image {
+            position: relative;
+        }
+
+        .card-image img {
+            object-fit: cover;
+        }
+
+        .card .title.is-5 {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .content p {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .view-all {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .view-all a {
+            font-weight: 600;
+        }
+
+        .view-all a i {
+            margin-left: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+   <!-- Thanh điều hướng -->
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+     <div class="navbar-brand">
+       <a class="navbar-item" href="trang-chu-tin-tai-chinh.html">
+         <img id="site-logo" src="logolight.png" width="112" height="28" alt="Tin Kinh Tế Logo">
+       </a>
+   
+       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+         <span aria-hidden="true"></span>
+       </a>
+     </div>
+   
+     <div id="Menu" class="navbar-menu">
+       <div class="navbar-start">
+         <a href="./trang-chu-tin-tai-chinh.html" class="navbar-item">
+            Trang Chủ
+         </a>
+         <a href="./chu-de-noi-bat.html" class="navbar-item is-active">
+            Chủ Đề Nổi Bật
+         </a>
+         <a href="./xa-hoi.html" class="navbar-item">
+            Xã Hội
+         </a>
+         <a href="./chung-khoan.html" class="navbar-item">
+            Chứng khoán
+         </a>
+         <a href="./tai-chinh.html" class="navbar-item">
+            Tài chính
+         </a>
+         <a href="./bat-dong-san.html" class="navbar-item">
+            Bất động sản
+         </a>
+   
+         <div class="navbar-item has-dropdown is-hoverable">
+           <a class="navbar-link">
+             Khác
+           </a>   
+           <div class="navbar-dropdown">
+                <a href="#" class="navbar-item">
+                    Ngân hàng
+                </a>
+                <a href="#" class="navbar-item">
+                    Doanh nghiệp
+                </a>
+                <a href="#" class="navbar-item">
+                    Thị trường
+                </a>
+                <a href="#" class="navbar-item">
+                    Tiêu dùng
+                </a>
+                <a href="#" class="navbar-item">
+                    Kinh tế vĩ mô
+                </a>
+                <hr class="navbar-divider">
+                <a href="#" class="navbar-item">
+                    Ô tô
+                </a>
+                <a href="#" class="navbar-item">
+                    Phong cách sống
+                </a>
+                <a href="#" class="navbar-item">
+                    Công nghệ
+                </a>
+                <a href="#" class="navbar-item">
+                    Du lịch
+                </a>
+                <a href="#" class="navbar-item">
+                    Giáo dục
+                </a>
+           </div>
+         </div>
+       </div>
+   
+       <div class="navbar-end">
+         <div class="navbar-item">
+           <div class="theme-toggle" id="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
+             <i class="mdi mdi-weather-night" id="theme-icon"></i>
+           </div>
+           <div class="search-box">
+                <input type="text" class="input is-rounded" placeholder="Tìm kiếm">
+           </div>
+           <div class="signin">
+                <a href="dang-nhap.html" class="button" style="background-color: #3273dc; color: white; border-color: #3273dc;">
+                    Đăng nhập
+                </a>
+                <a href="dang-ky.html" class="button is-outlined" style="color: #3273dc; border-color: #3273dc;">
+                    Đăng ký
+                </a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </nav>
+
+   <!-- Nội dung chính -->
+   <div class="container">
+     <section class="section">
+       <h1 class="title is-2 has-text-centered">Chủ Đề Nổi Bật</h1>
+       <p class="subtitle has-text-centered">Khám phá các chủ đề đang được quan tâm nhất hiện nay</p>
+       
+       <!-- Chủ đề 1: Công nghệ AI -->
+       <div class="topic-cluster">
+         <div class="topic-header">
+           <h2 class="title is-3 topic-title">Công Nghệ AI</h2>
+           <a href="#" class="hashtag">#TríTuệNhânTạo</a>
+         </div>
+         <div class="topic-divider"></div>
+         
+         <div class="columns is-multiline">
+           <!-- Tin 1 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://cdn.fpt-is.com/vi/AI-trong-y-te-FPT-IS-1743578295.png" alt="AI trong y tế">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">AI đang cách mạng hóa ngành y tế Việt Nam như thế nào?</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 25/03/2025 - 09:15</p>
+                 <div class="content">
+                   <p>Các bệnh viện lớn tại Việt Nam đang ứng dụng AI để chẩn đoán sớm và nâng cao hiệu quả điều trị...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 2 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://cdn.langsontv.vn/upload/news/10_2024/15_13120019102024.jpg" alt="AI trong giáo dục">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Giáo dục thông minh: Khi AI trở thành trợ lý đắc lực của giáo viên</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 24/03/2025 - 14:30</p>
+                 <div class="content">
+                   <p>Các công cụ AI đang giúp giáo viên tiết kiệm thời gian soạn bài và cá nhân hóa việc học cho từng học sinh...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 3 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://www.vista.gov.vn/vn-uploads/news/2022_07/1-7-2022/0.1.jpg" alt="AI trong tài chính">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Ngân hàng số và AI: Cuộc cách mạng trong ngành tài chính</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 23/03/2025 - 10:45</p>
+                 <div class="content">
+                   <p>Các ngân hàng Việt Nam đang đầu tư mạnh vào AI để nâng cao trải nghiệm khách hàng và phòng chống gian lận...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 4 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://media.vov.vn/sites/default/files/styles/large/public/2024-10/8.10%20nguyen%20duc%20hai%20ubtvqh38.jpeg.jpg" alt="Quy định AI">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Việt Nam chuẩn bị ban hành quy định về phát triển và sử dụng AI</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 16:20</p>
+                 <div class="content">
+                   <p>Bộ Thông tin và Truyền thông đang soạn thảo khung pháp lý cho phát triển và ứng dụng AI tại Việt Nam...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="view-all">
+           <a href="#">Xem tất cả bài viết về Công Nghệ AI <i class="mdi mdi-arrow-right"></i></a>
+         </div>
+       </div>
+       
+       <!-- Chủ đề 2: Biến đổi khí hậu -->
+       <div class="topic-cluster">
+         <div class="topic-header">
+           <h2 class="title is-3 topic-title">Biến Đổi Khí Hậu</h2>
+           <a href="#" class="hashtag">#MôiTrường</a>
+         </div>
+         <div class="topic-divider"></div>
+         
+         <div class="columns is-multiline">
+           <!-- Tin 1 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://img.cand.com.vn/resize/800x800/NewFiles/Images/2024/11/01/3-1730451576319.jpg" alt="Ngập lụt miền Trung">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Miền Trung đối mặt với nguy cơ ngập lụt nghiêm trọng trong mùa mưa 2025</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 25/03/2025 - 08:30</p>
+                 <div class="content">
+                   <p>Các chuyên gia cảnh báo mùa mưa năm nay có thể khắc nghiệt hơn do ảnh hưởng của biến đổi khí hậu...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 2 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://media.vneconomy.vn/w800/images/upload/2024/05/02/1-1.jpg" alt="Đồng bằng sông Cửu Long">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Đồng bằng sông Cửu Long: Cuộc chiến với xâm nhập mặn và nước biển dâng</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 24/03/2025 - 11:20</p>
+                 <div class="content">
+                   <p>Nông dân ĐBSCL đang phải thích nghi với tình trạng xâm nhập mặn ngày càng nghiêm trọng...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 3 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://ktmt.vnmediacdn.com/images/2024/05/14/93-1715659915-net-zero-2.jpg" alt="Năng lượng xanh">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Việt Nam đẩy mạnh phát triển năng lượng tái tạo, hướng tới Net Zero 2050</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 23/03/2025 - 09:45</p>
+                 <div class="content">
+                   <p>Các dự án điện gió, điện mặt trời đang được đầu tư mạnh mẽ nhằm giảm phát thải khí nhà kính...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 4 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://tapchimoitruong.vn/uploads/032021/image003_fbd0e2c6.jpg" alt="Rác thải nhựa">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Chiến dịch quốc gia giảm rác thải nhựa: Kết quả sau 2 năm triển khai</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 13:15</p>
+                 <div class="content">
+                   <p>Lượng rác thải nhựa đã giảm 15% tại các thành phố lớn nhờ các chính sách hạn chế sử dụng nhựa một lần...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="view-all">
+           <a href="#">Xem tất cả bài viết về Biến Đổi Khí Hậu <i class="mdi mdi-arrow-right"></i></a>
+         </div>
+       </div>
+       
+       <!-- Chủ đề 3: Khởi nghiệp -->
+       <div class="topic-cluster">
+         <div class="topic-header">
+           <h2 class="title is-3 topic-title">Khởi Nghiệp Đổi Mới</h2>
+           <a href="#" class="hashtag">#Startup</a>
+         </div>
+         <div class="topic-divider"></div>
+         
+         <div class="columns is-multiline">
+           <!-- Tin 1 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://media.doanhnhantrevietnam.vn/files/content/2023/01/19/startup-12-2202.jpg" alt="Startup Việt">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">10 startup Việt triển vọng nhất năm 2025 gọi vốn thành công</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 25/03/2025 - 10:30</p>
+                 <div class="content">
+                   <p>Các startup trong lĩnh vực fintech, healthtech và edtech đang dẫn đầu làn sóng gọi vốn mới từ các quỹ đầu tư...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 2 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://cdn.pixabay.com/photo/2017/07/31/11/44/laptop-2557576_1280.jpg" alt="Không gian làm việc chung">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Không gian làm việc chung bùng nổ tại các thành phố lớn</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 24/03/2025 - 15:45</p>
+                 <div class="content">
+                   <p>Mô hình coworking space đang phát triển mạnh mẽ, đáp ứng nhu cầu của cộng đồng startup và freelancer...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 3 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://phuong3.tayninh.gov.vn/uploads/news/2023_04/chinh-sach-ho-tro-doanh-nghiep-vua-va-nho.jpg" alt="Chính sách khởi nghiệp">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Chính phủ ban hành gói hỗ trợ mới cho doanh nghiệp khởi nghiệp</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 23/03/2025 - 12:15</p>
+                 <div class="content">
+                   <p>Gói hỗ trợ trị giá 2.000 tỷ đồng nhằm thúc đẩy hệ sinh thái khởi nghiệp đổi mới sáng tạo...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 4 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://www.thp.com.vn/wp-content/uploads/2018/10/chan-dung-10-nu-doanh-nhan-quyen-luc-nhat-viet-nam-nam-2018-bb-baaadCxlA3-1.jpg" alt="Nữ doanh nhân">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Nữ doanh nhân Việt: Làn sóng mới trong khởi nghiệp công nghệ</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 09:20</p>
+                 <div class="content">
+                   <p>Số lượng startup do phụ nữ sáng lập đã tăng 30% trong năm qua, đặc biệt trong lĩnh vực công nghệ...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 5 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://www.vietcap.com.vn/api/cms-api/uploads/froala/images/quy-dau-tu-mao-hiem-la-gi.jpg" alt="Đầu tư mạo hiểm">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Các quỹ đầu tư mạo hiểm quốc tế đổ bộ vào thị trường Việt Nam</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 21/03/2025 - 14:10</p>
+                 <div class="content">
+                   <p>Nhiều quỹ đầu tư lớn từ Singapore, Hàn Quốc và Mỹ đang tìm kiếm cơ hội đầu tư vào các startup Việt...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 6 -->
+           <div class="column is-4">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://avnuc.vn/wp-content/uploads/2022/08/5-1.jpg" alt="Khởi nghiệp sinh viên">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Sinh viên khởi nghiệp: Xu hướng mới trong các trường đại học</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 20/03/2025 - 11:30</p>
+                 <div class="content">
+                   <p>Các trường đại học đang tích cực xây dựng không gian sáng tạo và chương trình hỗ trợ sinh viên khởi nghiệp...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="view-all">
+           <a href="#">Xem tất cả bài viết về Khởi Nghiệp <i class="mdi mdi-arrow-right"></i></a>
+         </div>
+       </div>
+       
+       <!-- Chủ đề 4: Du lịch -->
+       <div class="topic-cluster">
+         <div class="topic-header">
+           <h2 class="title is-3 topic-title">Du Lịch Việt Nam</h2>
+           <a href="#" class="hashtag">#DuLịch</a>
+         </div>
+         <div class="topic-divider"></div>
+         
+         <div class="columns is-multiline">
+           <!-- Tin 1 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://static.vinwonders.com/2022/11/du-lich-ben-vung-1.jpg" alt="Du lịch bền vững">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Du lịch bền vững: Xu hướng mới của ngành du lịch Việt Nam</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 25/03/2025 - 11:45</p>
+                 <div class="content">
+                   <p>Các mô hình du lịch xanh, du lịch cộng đồng đang được ưa chuộng và phát triển mạnh mẽ...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 2 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://cdn.thuvienphapluat.vn/uploads/tintuc/2025/05/05/dao-phu-quoc.jpg" alt="Phú Quốc">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Phú Quốc lọt top 10 điểm đến hàng đầu châu Á năm 2025</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 24/03/2025 - 13:30</p>
+                 <div class="content">
+                   <p>Tạp chí du lịch quốc tế Travel+Leisure vừa bình chọn Phú Quốc là một trong những điểm đến hấp dẫn nhất châu Á...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 3 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://i1-dulich.vnecdn.net/2022/06/01/Hoi-An-6212-1649912858-6189-1654057242.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=KXO4XiZJDEnfGUvsYzspOw" alt="Hội An">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Hội An triển khai ứng dụng du lịch thông minh với công nghệ AR</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 23/03/2025 - 16:20</p>
+                 <div class="content">
+                   <p>Du khách có thể trải nghiệm phố cổ Hội An qua các lớp hình ảnh lịch sử với công nghệ thực tế ảo tăng cường...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <!-- Tin 4 -->
+           <div class="column is-3">
+             <div class="card news-card">
+               <div class="card-image">
+                 <figure class="image is-3by2">
+                   <img src="https://cdn.tgdd.vn/Files/2022/02/17/1415963/du-lich-tay-bac-cam-nang-kinh-nghiem-cho-nguoi-lan-dau-moi-di-202306291555094870.jpg" alt="Du lịch Tây Bắc">
+                 </figure>
+               </div>
+               <div class="card-content">
+                 <p class="title is-5">Tây Bắc mùa hoa: Điểm đến hút khách trong tháng 4</p>
+                 <p class="subtitle is-6 timestamp"><i class="mdi mdi-clock-outline"></i> 22/03/2025 - 08:45</p>
+                 <div class="content">
+                   <p>Mùa hoa ban, hoa mận và hoa cải trắng đang thu hút đông đảo du khách đến với các tỉnh Tây Bắc...</p>
+                   <a href="#" class="button is-small is-link is-outlined">Đọc tiếp</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="view-all">
+           <a href="#">Xem tất cả bài viết về Du Lịch <i class="mdi mdi-arrow-right"></i></a>
+         </div>
+       </div>
+     </section>
+   </div>
+
+   <!-- Footer -->
+   <footer class="footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
+          <h3 class="title is-5">Về Tin Kinh Tế</h3>
+          <p>Tin Kinh Tế là trang tin tức tài chính hàng đầu Việt Nam, cung cấp thông tin cập nhật và phân tích chuyên sâu về thị trường tài chính, chứng khoán, bất động sản và kinh tế vĩ mô.</p>
+          <div class="social-icons mt-3">
+            <a href="#" class="icon is-medium"><i class="mdi mdi-facebook mdi-24px"></i></a>
+            <a href="#" class="icon is-medium"><i class="mdi mdi-twitter mdi-24px"></i></a>
+            <a href="#" class="icon is-medium"><i class="mdi mdi-linkedin mdi-24px"></i></a>
+            <a href="#" class="icon is-medium"><i class="mdi mdi-youtube mdi-24px"></i></a>
+          </div>
+        </div>
+        <div class="column is-2">
+          <h3 class="title is-5">Danh mục</h3>
+          <ul>
+            <li><a href="trang-chu-tin-tai-chinh.html">Trang chủ</a></li>
+            <li><a href="xa-hoi.html">Xã hội</a></li>
+            <li><a href="chung-khoan.html">Chứng khoán</a></li>
+            <li><a href="tai-chinh.html">Tài chính</a></li>
+            <li><a href="bat-dong-san.html">Bất động sản</a></li>
+            <li><a href="#">Doanh nghiệp</a></li>
+          </ul>
+        </div>
+        <div class="column is-2">
+          <h3 class="title is-5">Tiện ích</h3>
+          <ul>
+            <li><a href="#">Lịch kinh tế</a></li>
+            <li><a href="#">Công cụ tính toán</a></li>
+            <li><a href="#">Biểu đồ kỹ thuật</a></li>
+            <li><a href="#">Tỷ giá ngoại tệ</a></li>
+            <li><a href="#">Giá vàng</a></li>
+            <li><a href="#">Giá xăng dầu</a></li>
+          </ul>
+        </div>
+        <div class="column is-4">
+          <h3 class="title is-5">Đăng ký nhận tin</h3>
+          <p>Nhận bản tin hàng ngày về thị trường tài chính và kinh tế.</p>
+          <div class="field has-addons mt-3">
+            <div class="control is-expanded">
+              <input class="input" type="email" placeholder="Email của bạn">
+            </div>
+            <div class="control">
+              <a class="button is-primary">Đăng ký</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="content has-text-centered">
+        <p>© 2025 Tin Kinh Tế. Tất cả các quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+   <script src="./theme-switcher.js"></script>
+   <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       // Xử lý navbar burger trên mobile
+       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+       if ($navbarBurgers.length > 0) {
+         $navbarBurgers.forEach(el => {
+           el.addEventListener('click', () => {
+             const target = el.dataset.target;
+             const $target = document.getElementById(target);
+             el.classList.toggle('is-active');
+             $target.classList.toggle('is-active');
+           });
+         });
+       }
+     });
+   </script>
+</body>
+</html>
